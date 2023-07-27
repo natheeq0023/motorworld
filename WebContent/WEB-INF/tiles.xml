@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="login.definition"
+		template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="title" value="Home" />
+	    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" /> 
+ 		<put-attribute name="menu" value="/WEB-INF/layout/menu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="reg.definition"
+		template="/WEB-INF/layout/reglayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/regmenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	
+	
+	<definition name="changeserver.page" extends="login.definition">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/view/ChangeServer.jsp" />
+	</definition>
+	<definition name="contactUsHome.page" extends="login.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/contactUs.jsp" />
+	</definition>
+	
+	<definition name="login.page" extends="login.definition">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/view/Login.jsp" />
+		
+	</definition>
+	<definition name="otherlogin.page" extends="reg.definition">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="body" value="/WEB-INF/view/OtherLogin.jsp" />
+	</definition>
+	<definition name="forgotpassword.page" extends="reg.definition">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="body" value="/WEB-INF/view/forgotpassword.jsp" />
+	</definition>
+	<definition name="showreg.page" extends="reg.definition">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="body" value="/WEB-INF/view/Reg1.jsp" />
+	</definition>
+	<definition name="showbasic.page" extends="reg.definition">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="body" value="/WEB-INF/view/BasicReg.jsp" />
+	</definition>
+	<definition name="showgolden.page" extends="reg.definition">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="body" value="/WEB-INF/view/GoldenReg.jsp" />
+	</definition>
+	<definition name="showgoldensuccess.page" extends="reg.definition">
+		<put-attribute name="title" value="RegistrationSuccess" />
+		<put-attribute name="body" value="/WEB-INF/view/GoldenRegSuccess.jsp" />
+	</definition>
+	<definition name="showbasicsuccess.page" extends="reg.definition">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="body" value="/WEB-INF/view/BasicRegSuccess.jsp" />
+	</definition>
+	
+	<definition name="customersucess.page" extends="reg.definition">
+		<put-attribute name="title" value="registration" />
+		<put-attribute name="body" value="/WEB-INF/view/customersucess.jsp" />
+	</definition>
+	
+	
+	
+	<!-- Main Manager Layout -->
+	<definition name="mainmanager.definition"
+		template="/WEB-INF/layout/mainmanagerlayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/mainmanagermenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="mainmanagerhome.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/MainManagerHome.jsp" />
+	</definition>
+	<definition name="mainmanagercreateaccount.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateAccount.jsp" />
+	</definition>
+	
+	<definition name="mainmanagercreateuserwarehouse.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateUserWarehouse.jsp" />
+	</definition>
+	<definition name="mainmanagercreatemanager.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateManager.jsp" />
+	</definition>
+	<definition name="mainmanagercreateadministration.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateAdministration.jsp" />
+	</definition>
+	<definition name="mainmanagercreateaccounting.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateAccounting.jsp" />
+	</definition>
+	
+	<definition name="mainmanagercreatecontroller.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateController.jsp" />
+	</definition>
+	<definition name="mainmanagercontrolaccount.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/ControlAccount.jsp" />
+	</definition>
+	<definition name="mainmanagercreatelocationwarehouse.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateWarehouse.jsp" />
+	</definition>
+	<definition name="mainmanagercreatewarehouse.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CreateUserWarehouse.jsp" />
+	</definition>
+	<definition name="mainmanagercontrolpage.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/ControlPage.jsp" />
+	</definition>
+	<definition name="mainmanagercompanybalance.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/CompanyBalance.jsp" />
+	</definition>
+	<definition name="mainmanageraccountinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/AccountInfo.jsp" />
+	</definition>
+	
+	<definition name="mainmanagerwarehouseplaceinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/WarehousePlaceInfo.jsp" />
+	</definition>
+	
+	<definition name="mainmanagerwarehouseagencyinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/WarehouseAgencyInfo.jsp" />
+	</definition>
+	
+	<definition name="mainmanagermachineplaceinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/MachinePlaceInfo.jsp" />
+	</definition>
+	<definition name="mainmanagerlockplaceinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/LockPlaceInfo.jsp" />
+	</definition>
+	<definition name="mainmanagermachineagencyinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/MachineAgencyInfo.jsp" />
+	</definition>
+	<definition name="mainmanagerlockagencyinfo.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/LockAgencyInfo.jsp" />
+	</definition>
+	<definition name="mainmanagerviewaccount.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/ViewAccount.jsp" />
+	</definition>
+	<definition name="mainmanagerviewwarehouse.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/ViewWarehouse.jsp" />
+	</definition>
+	<definition name="mainmanagerviewmachine.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/ViewMachine.jsp" />
+	</definition>
+	<definition name="mainmanagerviewlock.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/ViewLock.jsp" />
+	</definition>
+	<definition name="welcome.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/Welcome.jsp" />
+	</definition>
+	<definition name="mainmanagerprofile.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/profile.jsp" />
+	</definition>
+	<definition name="mainmanagerchangeProfile.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/profilechange.jsp" />
+	</definition>
+	<definition name="mainmanagererror.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/mainmanagerError.jsp" />
+	</definition>
+	<definition name="mainmanagersucess.page" extends="mainmanager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/mainmanager/mainmanagersucess.jsp" />
+	</definition>
+	<!--  Manager Layout -->
+	<definition name="manager.definition"
+		template="/WEB-INF/layout/managerlayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/managermenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="managercreateadministration.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateAdministration.jsp" />
+	</definition>
+	<definition name="managercreateaccount.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateAccount.jsp" />
+	</definition>
+	
+	<definition name="managercreateuserwarehouse.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateUserWarehouse.jsp" />
+	</definition>
+	<definition name="managercreatemanager.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateManager.jsp" />
+	</definition>
+	<definition name="managercreateadministration.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateAdministration.jsp" />
+	</definition>
+	<definition name="managercreateaccounting.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateAccounting.jsp" />
+	</definition>
+	
+	<definition name="managercreatecontroller.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateController.jsp" />
+	</definition>
+	<definition name="managercontrolaccount.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/ControlAccount.jsp" />
+	</definition>
+	<definition name="managercreatewarehouse.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CreateWarehouse.jsp" />
+	</definition>
+	<definition name="managercontrolpage.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/ControlPage.jsp" />
+	</definition>
+	<definition name="managercompanybalance.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/CompanyBalance.jsp" />
+	</definition>
+	<definition name="manageraccountinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/AccountInfo.jsp" />
+	</definition>
+	
+	<definition name="managerwarehouseplaceinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/WarehousePlaceInfo.jsp" />
+	</definition>
+	
+	<definition name="managerwarehouseagencyinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/WarehouseAgencyInfo.jsp" />
+	</definition>
+	
+	<definition name="managermachineplaceinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/MachinePlaceInfo.jsp" />
+	</definition>
+	<definition name="managerlockplaceinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/LockPlaceInfo.jsp" />
+	</definition>
+	<definition name="managermachineagencyinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/MachineAgencyInfo.jsp" />
+	</definition>
+	<definition name="managerlockagencyinfo.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/LockAgencyInfo.jsp" />
+	</definition>
+	<definition name="managerviewaccount.page" extends="manager.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/ViewAccount.jsp" />
+	</definition>
+	<definition name="managerviewwarehouse.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/ViewWarehouse.jsp" />
+	</definition>
+	<definition name="managerviewmachine.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/ViewMachine.jsp" />
+	</definition>
+	<definition name="managerviewlock.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/ViewLock.jsp" />
+	</definition>
+	<definition name="welcome.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/Welcome.jsp" />
+	</definition>
+	<definition name="managerprofile.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/profile.jsp" />
+	</definition>
+	<definition name="managerchangeProfile.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/profilechange.jsp" />
+	</definition>
+	<definition name="managererror.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/managerError.jsp" />
+	</definition>
+	<definition name="managersucess.page" extends="manager.definition">
+		<put-attribute name="title" value="Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/manager/managersucess.jsp" />
+	</definition>
+	
+	
+		<!-- Admin Layout -->
+	<definition name="admin.definition"
+		template="/WEB-INF/layout/adminlayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/adminmenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="adminhome.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/AdminHome.jsp" />
+	</definition>
+	<definition name="admincreateaccount.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/CreateAccount.jsp" />
+	</definition>
+	<definition name="admincreateAd.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/CreateAd.jsp" />
+	</definition>
+	<definition name="admincreatelock.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/CreateLock.jsp" />
+	</definition>
+	<definition name="adminagency.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/Agency.jsp" />
+	</definition>
+	
+	<definition name="adminviewagency.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/ViewAgency.jsp" />
+	</definition>
+	
+	<definition name="admincreatemachinebarcode.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/CreateMachineBarcode.jsp" />
+	</definition>
+	
+	<definition name="adminprofile.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/profile.jsp" />
+	</definition>
+	<definition name="adminchangeProfile.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/profilechange.jsp" />
+	</definition>
+	<definition name="adminerror.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/adminError.jsp" />
+	</definition>
+	<definition name="adminsucess.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/adminsucess.jsp" />
+	</definition>
+	<definition name="adminagencyorders.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/AgencyOrders.jsp" />
+	</definition>
+	<definition name="customerService.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/customerService.jsp" />
+	</definition>
+	<definition name="customerRTOService.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/customerRTOService.jsp" />
+	</definition>
+	
+	
+	<definition name="adminviewvehicleservice.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/viewvehicleservice.jsp" />
+	</definition>
+	
+	<definition name="adminviewvehicleRTOservice.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/viewRtovehicleservice.jsp" />
+	</definition>
+	
+	<definition name="adminviewagencyorder.page" extends="admin.definition">
+		<put-attribute name="title" value="Administration" />
+		<put-attribute name="body" value="/WEB-INF/view/admin/ViewAgencyOrder.jsp" />
+	</definition>
+	
+	<!-- Accounting Layout -->
+	<definition name="accounting.definition"
+		template="/WEB-INF/layout/accountinglayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/accountingmenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	
+	
+	
+	<definition name="accountinghome.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/AccountingHome.jsp" />
+	</definition>
+	
+	<definition name="accountingcreatemachineprice.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/CreateMachinePrice.jsp" />
+	</definition>
+	
+	
+	<definition name="accountingcreatelockprice.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/CreateLockPrice.jsp" />
+	</definition>
+	<definition name="accountingaccountspercentage.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/AccountsPercentage.jsp" />
+	</definition>
+	<definition name="accountingcreatemachineprice.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/CreateMachinePrice.jsp" />
+	</definition>
+	<definition name="accountingitemspercentage.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/ItemsPercentage.jsp" />
+	</definition>
+	<definition name="accountingpartnerpercentage.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/PartnerPercentage.jsp" />
+	</definition>
+	<definition name="accountingviewagreement.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/ViewAgreement.jsp" />
+	</definition>
+	<definition name="accountinguseraccounts.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/ViewlAccounts.jsp" />
+	</definition>
+	
+	<definition name="accountingmachinessaleshistory.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/MachinesSalesHistory.jsp" />
+	</definition>
+	<definition name="accountinglockssaleshistory.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/LocksSalesHistory.jsp" />
+	</definition>
+	
+	<definition name="accountingitemssaleshistory.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/ItemsSalesHistory.jsp" />
+	</definition>
+	
+	<definition name="accountingprofile.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/profile.jsp" />
+	</definition>
+	
+	<definition name="accountchangeProfile.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/profilechange.jsp" />
+	</definition>
+	
+	<definition name="accounterror.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/accountError.jsp" />
+	</definition>
+	
+	<definition name="accountsucess.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/accountsucess.jsp" />
+	</definition>
+	<definition name="accountingitemspercentage.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/ItemsPercentage.jsp" />
+	</definition>
+	<definition name="accountingpartnerpercentage.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/PartnerPercentage.jsp" />
+	</definition>
+	<definition name="accountingviewagreement.page" extends="accounting.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/accounting/ViewAgreement.jsp" />
+	</definition>
+	
+	<!-- Support Layout -->
+	<definition name="support.definition"
+		template="/WEB-INF/layout/supportlayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/supportmenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="supporthome.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/SupportHome.jsp" />
+	</definition>
+	<definition name="supportcreateitem.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/CreateItem.jsp" />
+	</definition>
+	<definition name="supportedititem.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/EditItem.jsp" />
+	</definition>
+	<definition name="supportviewaccounts.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/ViewlAccounts.jsp" />
+	</definition>
+	<definition name="supportviewPages.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/ViewPage.jsp" />
+	</definition>
+	<definition name="supportviewitems.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/ViewItem.jsp" />
+	</definition>
+	
+	<definition name="supportprofile.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/profile.jsp" />
+	</definition>
+	<definition name="supportchangeProfile.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/profilechange.jsp" />
+	</definition>
+	<definition name="supporterror.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/supportError.jsp" />
+	</definition>
+	<definition name="supportsucess.page" extends="support.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/support/supportsucess.jsp" />
+	</definition>
+	
+	
+	<!-- CallingCenter Layout -->
+	<definition name="callingcenter.definition"
+		template="/WEB-INF/layout/callingcenterlayout.jsp">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/callingcentermenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="callingcenterhome.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/CallingCenterHome.jsp" />
+	</definition>
+	<definition name="callingcenterviewaccounts.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/ViewlAccounts.jsp" />
+	</definition>
+	<definition name="callingcenterviewmachine.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/ViewMachine.jsp" />
+	</definition>
+	<definition name="callingcenterviewlock.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/ViewLock.jsp" />
+	</definition>
+	<definition name="callingcenterviewwarehouse.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/ViewWarehouse.jsp" />
+	</definition>
+	<definition name="callcenterprofile.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/profile.jsp" />
+	</definition>
+	<definition name="callcenterchangeProfile.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/profilechange.jsp" />
+	</definition>
+	<definition name="callcentererror.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/callingcenterError.jsp" />
+	</definition>
+	<definition name="callcentersucess.page" extends="callingcenter.definition">
+		<put-attribute name="title" value="calling center" />
+		<put-attribute name="body" value="/WEB-INF/view/callingcenter/callingcentersucess.jsp" />
+	</definition>
+	
+	
+	<!-- Customer Layout -->
+	<definition name="customer.definition"
+		template="/WEB-INF/layout/customerlayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/customermenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="customerhome.page" extends="customer.definition">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/viewvehicle.jsp" />
+	</definition>
+	
+	<definition name="customerprofile.page" extends="customer.definition">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/profile.jsp" />
+	</definition>
+	<definition name="customerchangeProfile.page" extends="customer.definition">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/profilechange.jsp" />
+	</definition>
+	<definition name="customeragencyrequest.page" extends="customer.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/AgencyRequest.jsp" />
+	</definition>
+	
+	<definition name="vehiclerequest.page" extends="customer.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/vehicleService.jsp" />
+	</definition>
+	
+	<definition name="contactUs.page" extends="customer.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/contactUs.jsp" />
+	</definition>
+	<definition name="rtoService.page" extends="customer.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/rtoservice.jsp" />
+	</definition>
+	
+	<definition name="aboutUs.page" extends="customer.definition">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/aboutUs.jsp" />
+	</definition>
+	
+	
+	<definition name="adminsucess.page" extends="customer.definition">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/adminsucess.jsp" />
+	</definition>
+	
+	<definition name="myorders.page" extends="customer.definition">
+		<put-attribute name="title" value="customer" />
+		<put-attribute name="body" value="/WEB-INF/view/customer/MyOrders.jsp" />
+	</definition>
+	
+	<!-- Controller Layout   -->
+	<!-- Controller Account  -->
+	 <definition name="controller.definition"
+		template="/WEB-INF/layout/controllerlayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/controllermenu.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="welcomecontroller.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/Welcome.jsp" />
+	</definition>
+	<definition name="controllercontrolpage.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/ControlAccount.jsp" />
+	</definition>
+	<definition name="controllerviewpage.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/ViewAccount.jsp" />
+	</definition>
+	<definition name="controllermachinepage.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/ControlMachinePage.jsp" />
+	</definition>
+	<definition name="controllerlockpage.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/ControllockPage.jsp" />
+	</definition>
+	<definition name="controllermachineviewpage.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/ViewMachine.jsp" />
+	</definition>
+	<definition name="controllerlockviewpage.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/ViewLock.jsp" />
+	</definition>
+	<definition name="controllerprofile.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/profile.jsp" />
+	</definition>
+	<definition name="controllerchangeProfile.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/profilechange.jsp" />
+	</definition>
+	<definition name="controllererror.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/controllerError.jsp" />
+	</definition>
+	<definition name="controllersucess.page" extends="controller.definition">
+		<put-attribute name="title" value="Controller" />
+		<put-attribute name="body" value="/WEB-INF/view/controller/Controllersucess.jsp" />
+	</definition>
+	<!--  Warehouse Layout -->
+	<definition name="warehouse.definition"
+		template="/WEB-INF/layout/warehouselayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/warehousemenu.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="warehousehome.page" extends="warehouse.definition">
+		<put-attribute name="title" value="Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/WarehouseHome.jsp" />
+	</definition>
+	<definition name="warehouseagencyorders.page" extends="warehouse.definition">
+		<put-attribute name="title" value="Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/AgencyOrders.jsp" />
+	</definition>
+	<definition name="warehouseviewagencyorder.page" extends="warehouse.definition">
+		<put-attribute name="title" value="Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/ViewAgencyOrder.jsp" />
+	</definition>
+	<definition name="warehousemachinetransfer.page" extends="warehouse.definition">
+		<put-attribute name="title" value="Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/MachineTransfer.jsp" />
+	</definition>
+	<definition name="warehouselocktransfer.page" extends="warehouse.definition">
+		<put-attribute name="title" value="Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/LockTransfer.jsp" />
+	</definition>
+	<definition name="warehouseprofile.page" extends="warehouse.definition">
+		<put-attribute name="title" value="warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/profile.jsp" />
+	</definition>
+	<definition name="warehousechangeProfile.page" extends="warehouse.definition">
+		<put-attribute name="title" value="warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/profilechange.jsp" />
+	</definition>
+	<definition name="warehouseerror.page" extends="warehouse.definition">
+		<put-attribute name="title" value="warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/warehouseError.jsp" />
+	</definition>
+	<definition name="warehousesucess.page" extends="warehouse.definition">
+		<put-attribute name="title" value="warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/warehouse/warehousesucess.jsp" />
+	</definition>
+	
+	<!-- agency layout -->
+	<definition name="agency.definition"
+		template="/WEB-INF/layout/agencylayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/agencymenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="agencyhome.page" extends="agency.definition">
+		<put-attribute name="title" value="Agency" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/AgencyHome.jsp" />
+	</definition>
+	
+	<definition name="agencycreatelocationwarehouse.page" extends="agency.definition">
+		<put-attribute name="title" value="Create Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/CreateWarehouse.jsp" />
+	</definition>
+	
+	<definition name="agencywarehouses.page" extends="agency.definition">
+		<put-attribute name="title" value="Warehouses" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/WarehouseList.jsp" />
+	</definition>
+	
+	<definition name="agencybuyfromcompany.page" extends="agency.definition">
+		<put-attribute name="title" value="Buyfromcompany" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/BuyFromCompany.jsp" />
+	</definition>
+	
+	<definition name="agencymyorders.page" extends="agency.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/MyOrders.jsp" />
+	</definition>
+	<definition name="agencyviewmyorders.page" extends="agency.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/ViewMyOrder.jsp" />
+	</definition>
+	<definition name="agencywarehousemachines.page" extends="agency.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/WarehouseMachines.jsp" />
+	</definition>
+	<definition name="agencywarehouselocks.page" extends="agency.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/WarehouseLocks.jsp" />
+	</definition>
+	 <definition name="agencycreatesalesman.page" extends="agency.definition">
+     <put-attribute name="title" value="Agency" />
+     <put-attribute name="body" value="/WEB-INF/view/agency/CreateSalesMan.jsp" />
+ </definition>
+ 
+  <definition name="agencycreatebranch.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/CreateBranch.jsp" />
+ </definition>
+ <definition name="agencybranches.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/Branches.jsp" />
+ </definition>
+ <definition name="agencyconnectwarehouse.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/ConnectWarehouse.jsp" />
+ </definition>
+ <definition name="agencyconnectbranch.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/ConnectBranch.jsp" />
+ </definition>
+ 
+ <definition name="agencysalesman.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/SalesMans.jsp" />
+ </definition>
+ <definition name="agencyoperator.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/ViewOperator.jsp" />
+ </definition>
+  <definition name="agencyviewoperatordetails.page" extends="agency.definition">
+    <put-attribute name="title" value="Agency" />
+    <put-attribute name="body" value="/WEB-INF/view/agency/ViewOperatorForm.jsp" />
+ </definition>
+ <definition name="agencyoperatororders.page" extends="agency.definition">
+		<put-attribute name="title" value="Operator Orders" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/OperatorOrders.jsp" />
+	</definition>
+	<definition name="agencyviewoperatororder.page" extends="agency.definition">
+		<put-attribute name="title" value="Operator Order" />
+		<put-attribute name="body" value="/WEB-INF/view/agency/ViewOperatorOrder.jsp" />
+	</definition>
+ 
+ <!-- Saleman layout -->
+ <definition name="salesman.definition"
+		template="/WEB-INF/layout/salesmanlayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/salesmanmenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="salesmanhome.page" extends="salesman.definition">
+		<put-attribute name="title" value="Salesman" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/SalesmanHome.jsp" />
+	</definition>
+	<definition name="salesmanwarehouselocks.page" extends="salesman.definition">
+		<put-attribute name="title" value="Agency" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/WarehouseLocks.jsp" />
+	</definition>
+	<definition name="salesmanwarehousemachines.page" extends="salesman.definition">
+		<put-attribute name="title" value="Salesman" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/WarehouseMachines.jsp" />
+	</definition>
+	<definition name="operatorrequest.page" extends="salesman.definition">
+		<put-attribute name="title" value="Salesman" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/OperatorRequest.jsp" />
+	</definition>
+	<definition name="salesmanoperatororders.page" extends="salesman.definition">
+		<put-attribute name="title" value="Salesman" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/OperatorOrders.jsp" />
+	</definition>
+	<definition name="salesmanviewoperatororder.page" extends="salesman.definition">
+		<put-attribute name="title" value="Salesman" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/ViewOperatorOrder.jsp" />
+	</definition>
+	<definition name="salesmanprofile.page" extends="salesman.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/profile.jsp" />
+	</definition>
+	<definition name="salesmanchangeProfile.page" extends="salesman.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/profilechange.jsp" />
+	</definition>
+	<definition name="salesmanerror.page" extends="salesman.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/salesmanError.jsp" />
+	</definition>
+	<definition name="salesmansucess.page" extends="salesman.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/salesman/salesmansucess.jsp" />
+	</definition>
+	
+	 <!-- Operator layout -->
+ <definition name="operator.definition"
+		template="/WEB-INF/layout/operatorlayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/operatormanmenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="operatorhome.page" extends="operator.definition">
+		<put-attribute name="title" value="Operator" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/OperatorHome.jsp" />
+	</definition>
+	<definition name="operatorcreatelocationwarehouse.page" extends="operator.definition">
+		<put-attribute name="title" value="Create Warehouse" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreateWarehouse.jsp" />
+	</definition>
+	
+	<definition name="operatorwarehouses.page" extends="operator.definition">
+		<put-attribute name="title" value="Warehouses" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/WarehouseList.jsp" />
+	</definition>
+	<definition name="operatorbuyfromagency.page" extends="operator.definition">
+		<put-attribute name="title" value="Buyfromcompany" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/BuyFromAgency.jsp" />
+	</definition>
+	
+	<definition name="operatormyorders.page" extends="operator.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/MyOrders.jsp" />
+	</definition>
+	<definition name="operatorviewmyorders.page" extends="operator.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/ViewMyOrder.jsp" />
+	</definition>
+	<definition name="operatorcreatesupplier.page" extends="operator.definition">
+		<put-attribute name="title" value="CreateAccount" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreateAccount.jsp" />
+	</definition>
+	
+	<definition name="operatormachinelock.page" extends="operator.definition">
+		<put-attribute name="title" value="CreateAccount" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/MachineLock.jsp" />
+	</definition>
+	
+	<definition name="operatormachinesupplier.page" extends="operator.definition">
+		<put-attribute name="title" value="CreateAccount" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/MachineSupplier.jsp" />
+	</definition>
+	<definition name="operatorcreateitem.page" extends="operator.definition">
+		<put-attribute name="title" value="Support" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreateItem.jsp" />
+	</definition>
+	<definition name="operatorcreateitemprice.page" extends="operator.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreateItemPrice.jsp" />
+	</definition>
+	<definition name="operatorcreateitemquantity.page" extends="operator.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreateItemQuantity.jsp" />
+	</definition>
+	
+	<definition name="operatoritemsupplier.page" extends="operator.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreateItemSupplier.jsp" />
+	</definition>
+	
+	<definition name="operatormachinepartner.page" extends="operator.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/MachinePartner.jsp" />
+	</definition>
+	<definition name="operatorcreatepartner.page" extends="operator.definition">
+		<put-attribute name="title" value="MyOrders" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/CreatePartner.jsp" />
+	</definition>
+	<definition name="operatorprofile.page" extends="operator.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/profile.jsp" />
+	</definition>
+	<definition name="operatorchangeProfile.page" extends="operator.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/profilechange.jsp" />
+	</definition>
+	<definition name="operatorerror.page" extends="operator.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/OperatorError.jsp" />
+	</definition>
+	<definition name="operatorsucess.page" extends="operator.definition">
+		<put-attribute name="title" value="ChangeProfile" />
+		<put-attribute name="body" value="/WEB-INF/view/operator/Operatorsucess.jsp" />
+	</definition>
+	<!-- Supplier layout -->
+ <definition name="supplier.definition"
+		template="/WEB-INF/layout/supplierlayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/suppliermenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="supplierhome.page" extends="supplier.definition">
+		<put-attribute name="title" value="Partner" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/SupplierHome.jsp" />
+	</definition>
+	<definition name="supplieritemlock.page" extends="supplier.definition">
+		<put-attribute name="title" value=" Item Lock" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/CreateItemLock.jsp" />
+	</definition>
+	<definition name="suppliermachines.page" extends="supplier.definition">
+		<put-attribute name="title" value=" Item Lock" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/Machines.jsp" />
+	</definition>
+	<definition name="supplierlocks.page" extends="supplier.definition">
+		<put-attribute name="title" value=" Item Lock" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/Locks.jsp" />
+	</definition>
+	<definition name="supplieritems.page" extends="supplier.definition">
+		<put-attribute name="title" value=" Item Lock" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/Items.jsp" />
+	</definition>
+		<definition name="supplierprofile.page" extends="supplier.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/profile.jsp" />
+	</definition>
+	<definition name="supplierchangeProfile.page" extends="supplier.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/profilechange.jsp" />
+	</definition>
+	<definition name="suppliererror.page" extends="supplier.definition">
+		<put-attribute name="title" value="Main Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/supplierError.jsp" />
+	</definition>
+	<definition name="suppliersucess.page" extends="supplier.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/supplier/suppliersucess.jsp" />
+	</definition>
+	 <!-- partner layout -->
+ <definition name="partner.definition"
+		template="/WEB-INF/layout/partnerlayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layout/partnermenu.jsp" />
+		<put-attribute name="body" value="" />
+		
+	</definition>
+	<definition name="partnerhome.page" extends="partner.definition">
+		<put-attribute name="title" value="Partner" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/PartnerHome.jsp" />
+	</definition>
+	<definition name="partnercreatelocation.page" extends="partner.definition">
+		<put-attribute name="title" value="Create partner" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/CreateLocation.jsp" />
+	</definition>
+	
+	<definition name="partnerlocations.page" extends="partner.definition">
+		<put-attribute name="title" value="partner" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/LocationList.jsp" />
+	</definition>
+	
+	<definition name="partnermachines.page" extends="partner.definition">
+		<put-attribute name="title" value="partner" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/Machines.jsp" />
+	</definition>
+	<definition name="allcontract.page" extends="partner.definition">
+		<put-attribute name="title" value="Partner Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/AllContract.jsp" />
+	</definition>
+	<definition name="partnerview.page" extends="partner.definition">
+		<put-attribute name="title" value="Partner Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/partnerView.jsp" />
+	</definition>
+	<definition name="allmachine.page" extends="partner.definition">
+		<put-attribute name="title" value="Partner Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/AllMachine.jsp" />
+	</definition>
+	<definition name="machineview.page" extends="partner.definition">
+		<put-attribute name="title" value="Partner Manager" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/machineView.jsp" />
+	</definition>
+		<definition name="partnerprofile.page" extends="partner.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/profile.jsp" />
+	</definition>
+	<definition name="partnerchangeProfile.page" extends="partner.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/profilechange.jsp" />
+	</definition>
+	<definition name="partnererror.page" extends="partner.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/partnerError.jsp" />
+	</definition>
+	<definition name="partnersucess.page" extends="partner.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/partner/partnersucess.jsp" />
+	</definition>
+	
+</tiles-definitions>
+

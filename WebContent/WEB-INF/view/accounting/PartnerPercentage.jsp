@@ -1,0 +1,117 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.ctextbox
+{
+	background-color:#C1C1C1;
+}
+.btn-lableinfo {
+    color: #fff;
+    background-color: #5B9BD5;
+    border-color: #5B9BD5;
+}
+.lbl-lableinfo {
+    color: #fff;
+    background-color: #5B9BD5;
+    border-color: #5B9BD5;
+}
+.btn-titlelableinfo {
+    color: #292424;
+    background-color: #F0AD4E;
+    border-color: #F0AD4E;
+    padding: 6px 35px;
+}
+.table-bordered {
+    border: 1px solid #28137B;
+}
+.table-bordered>tfoot>tr>td {
+    border: 1px solid #ddd;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #CFDEEA;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+    background-color: rgb(232, 241, 249);;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 2px solid #FFF;
+}
+</style>
+
+<c:if test="${not empty param.s}">
+	<div class="alert alert-success fade in" id="divSuccess">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong> Agreement has been ${param.st }ed successfully.
+</div>
+</c:if>
+<!-- row  -->
+   <div class="row">
+   
+   
+   <div class="col-xs-8 col-md-8" align="center">
+        <div class="form-group">
+           <button type="button" class="btn btn-lableinfo btn-pressure btn-sensitive">&nbsp;&nbsp;&nbsp;Agreement Request&nbsp;&nbsp;&nbsp;</button> 
+         </div>
+                          
+    </div>
+                    
+   </div>
+   <!-- end row -->
+   <c:if test="${requestScope.agreements ne null}">
+   <!-- row  -->
+   <div class="row">
+        <div class="col-md-9">
+   <div id="no-more-tables">
+            <table class="col-md-9 table-bordered table-striped table-condensed cf">
+        		<thead class="cf">
+        			<tr>
+        				<th class="lbl-lableinfo" align="center">&nbsp;&nbsp;&nbsp;NO.</th>
+        				<th class="lbl-lableinfo" > Partner&nbsp;1&nbsp;ID</th>
+        				<th class="lbl-lableinfo" >Partner&nbsp;2&nbsp;ID</th>
+        				<th class="lbl-lableinfo" >% of 1</th>
+        				<th class="lbl-lableinfo" >% of 2</th>
+        				<th class="lbl-lableinfo" >View</th>
+        				
+        			</tr>
+        		</thead>
+        		<tbody>
+        		<c:forEach items="${requestScope.agreements}" var="agreement" varStatus="st">
+        			<tr>
+        				<td>
+        					${st.count }
+        				</td>
+        				
+        				<td>
+        					${agreement.userRoleId }
+        				</td>
+        				<td>
+        					${agreement.userId }
+        				</td>
+        				<td>
+        					${agreement.percentage }
+        				</td>
+        				<td>
+        					${agreement.percentage }
+        				</td>
+        				
+        				<td>
+        					<a href="viewagreement.htm?i=${agreement.operatorPartnerId }">View</a>
+        				</td>
+        			</tr>
+        			
+        			
+        		
+        		</c:forEach>
+        			
+        		</tbody>
+        	</table>
+        </div>
+        </div>
+        </div>
+        <!-- end row  -->
+        </c:if>
