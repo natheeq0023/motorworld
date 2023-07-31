@@ -23,25 +23,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.moaddi.service.CustomerService;
-import com.moaddi.service.LockService;
-import com.moaddi.service.MachineService;
+
 import com.moaddi.service.UserRoleService;
 import com.moaddi.service.VehicleAdService;
-import com.moaddi.service.WarehouseService;
-import com.moaddi.service.dto.AgencyRequestDTO;
-import com.moaddi.service.dto.AgencyRequestDTOs;
+
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.service.dto.LockDTO;
-import com.moaddi.service.dto.MachineDTO;
-import com.moaddi.service.dto.OrderDTO;
+
 import com.moaddi.service.dto.UserRoleDTO;
 import com.moaddi.service.dto.VehicleAdDTO;
 import com.moaddi.service.dto.VehicleServiceDTO;
-import com.moaddi.service.dto.WarehouseDTO;
+
 import com.moaddi.ui.forms.AgencyRequestForm;
 import com.moaddi.ui.forms.AgencyRequestForms;
 import com.moaddi.ui.forms.VehicleServiceForm;
-
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 @Controller
 public class CustomerController {
 	
@@ -50,12 +51,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@Autowired
-	private WarehouseService warehouseService;
-	@Autowired
-	private MachineService machineService;
-	@Autowired
-	private LockService lockService;
+	
 	@Autowired
 	private VehicleAdService vehicleAdService;	
 	
@@ -132,6 +128,50 @@ public class CustomerController {
 
 	}
 	
+	@RequestMapping("/customer/deliveryNote")
+	public String deliveryNote(HttpServletRequest request) {
+		
+		return "deliveryNote.page";
+
+	}	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/customer/deliveryNote")
+	public String deliveryNote(VehicleServiceForm vehicleServiceForm, ModelMap modelMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Inside delivery note" );
+		URL url = null;
+        try {
+            url = new URL("https://vahan.parivahan.gov.in/nrservices/faces/user/citizen/searchstatus.xhtml");
+          InputStream in = new BufferedInputStream(url.openStream());
+          ByteArrayOutputStream out = new ByteArrayOutputStream();
+          
+        
+          byte[] buf = new byte[1024];
+          int n = 0;
+          while (-1!=(n=in.read(buf)))
+          {
+            out.write(buf, 0, n);
+          }
+          System.out.println(out+"api");
+          out.close();
+          in.close();
+          byte[] response1 = out.toByteArray();
+          FileOutputStream fos = new FileOutputStream("C://captcha.jpg");
+          fos.write(response1);
+          fos.close();
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
+    
+		
+		
+				return null;}
+	
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/customer/vehicleservice")
 	public String vehicleServiceRequest(VehicleServiceForm vehicleServiceForm, ModelMap modelMap,
@@ -145,6 +185,7 @@ public class CustomerController {
 		vehicleServiceDTO.setRequesterName(vehicleServiceForm.getFullName());
 		vehicleServiceDTO.setMobileNo(vehicleServiceForm.getMobileNo());
 		vehicleServiceDTO.setStatus("Pending");
+		vehicleServiceDTO.setEmail(vehicleServiceForm.getEmail());
 		
 		String mob = vehicleServiceForm.getMobileNo();
 		String fullname = vehicleServiceForm.getFullName();
@@ -185,6 +226,7 @@ public class CustomerController {
 		vehicleServiceDTO.setStatus("Pending");
 		vehicleServiceDTO.setRtoservicetype(vehicleServiceForm.getRtoservicetype());
 		vehicleServiceDTO.setVehicleName(vehicleServiceForm.getVehicleName());
+		vehicleServiceDTO.setEmail(vehicleServiceForm.getEmail());
 		String mob = vehicleServiceForm.getMobileNo();
 		String fullname = vehicleServiceForm.getFullName();
 		String serviceType = vehicleServiceForm.getRtoservicetype();
@@ -211,79 +253,6 @@ public class CustomerController {
 		//return "redirect:agencyrequest.htm?s=success";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/customer/agencyrequest")
-	public String agencyRequest(AgencyRequestForm agencyRequestForm, ModelMap modelMap,
-			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("hello");
-		AgencyRequestDTO agencyRequestDTO=new AgencyRequestDTO();
-		agencyRequestDTO.setCountry(agencyRequestForm.getCountry());
-		agencyRequestDTO.setOrganizationName(agencyRequestForm.getOrganizationName());
-		agencyRequestDTO.setOrganizationType(agencyRequestForm.getOrganizationType());
-		agencyRequestDTO.setRequesterName(agencyRequestForm.getRequesterName());
-		agencyRequestDTO.setStreet(agencyRequestForm.getStreet());
-		agencyRequestDTO.setCity(agencyRequestForm.getCity());
-		agencyRequestDTO.setEmail(agencyRequestForm.getEmail());
-		agencyRequestDTO.setMobileNo(agencyRequestForm.getMobileNo());
-		agencyRequestDTO.setCustomerId(agencyRequestForm.getCustomerId());
-		agencyRequestDTO.setStatus("Pending");
-		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			agencyRequestDTO.setYearEstablished(sdf.parse(agencyRequestForm.getYearEstablished()));
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		 /*code start mail ################################*/
-	 	  
-	 	  SimpleMailMessage email1 = new SimpleMailMessage();
-	 	 email1.setTo(agencyRequestForm.getEmail());
-	 	email1.setSubject("NotificationFromMoaddi");
-	 	email1.setText("We have received your request form for Agency.We are Proccesing your request Form it is taken 4 to 5 days");
-			
-			// sends the e-mail
-			mailSender.send(email1);
-	 	   //send userId password to user roles table
-			
-		agencyRequestDTO.setDoc(agencyRequestForm.getDoc().getOriginalFilename());
-		System.out.println(agencyRequestForm.getCustomerId()+"In Controller");
-		Long agencyRequestId=customerService.saveAgencyRequests(agencyRequestDTO);
-		if (agencyRequestId != null) {
-
-			MultipartFile multiFile = agencyRequestForm.getDoc();
-			try {
-				// just to show that we have actually received the file
-
-				String fileName = multiFile.getOriginalFilename();
-
-				String path = request.getSession().getServletContext()
-						.getRealPath("/");
-                System.out.println(path+"path");
-				// making directories for our required path.
-				byte[] bytes = multiFile.getBytes();
-				File directory = new File(path + "/uploads/agencyrequest/"
-						+ agencyRequestId);
-				System.out.println(directory+"directory");
-				directory.mkdirs();
-				// saving the file
-				File file = new File(directory.getAbsolutePath()
-						+ System.getProperty("file.separator") + fileName);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(file));
-				stream.write(bytes);
-				stream.close();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			}
-		}
-	
-		return "redirect:agencyrequest.htm?s=success";
-	}
 	
 @RequestMapping(method = RequestMethod.POST, value = "/customer/buy")
 /*date 29 dec 2015*/
@@ -459,6 +428,7 @@ public String myOrders(HttpServletRequest request) {
 		List<VehicleServiceDTO> orders=customerService.loadOrders(customerId);
 		System.out.println("cutsomer details"+orders);
 		request.setAttribute("orders", orders);
+		
 		
 		List<VehicleServiceDTO> serviceorders=customerService.serviceOrders(customerId);
 		System.out.println("cutsomer details"+serviceorders);

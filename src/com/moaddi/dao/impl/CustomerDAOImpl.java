@@ -13,19 +13,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moaddi.dao.CustomerDAO;
-import com.moaddi.dao.model.AccountsPercentageTL;
-import com.moaddi.dao.model.AgencyRequestTL;
-import com.moaddi.dao.model.AgencyRequestTLs;
+
 import com.moaddi.dao.model.CustomerTL;
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
-import com.moaddi.dao.model.OperatorRequestTL;
-import com.moaddi.dao.model.OrderTL;
+
 import com.moaddi.dao.model.UserRolesTL;
 import com.moaddi.dao.model.VehicleRtoServiceTL;
 import com.moaddi.dao.model.VehicleServiceTL;
 import com.moaddi.dao.utility.CustomHibernateDaoSupport;
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
+
 
 @Repository("customerDAO")
 @Transactional
@@ -169,13 +165,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 
 
 	
-	public Integer insertAgencyRequest(AgencyRequestTLs agencyRequestTL) {
-		// TODO Auto-generated method stub
-		Integer agencyRequestId=0;
-		agencyRequestId=(Integer)getHibernateTemplate().save(agencyRequestTL);
-		return agencyRequestId;
-	}
-
+	
 
 
 	
@@ -204,72 +194,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 		return agencies;
 	}
 
-
-
-	public AgencyRequestTLs getAgencyRequest(Integer agencyRequestId) {
-		// TODO Auto-generated method stub
-		AgencyRequestTLs agencyRequestTL=null;
-		agencyRequestTL=(AgencyRequestTLs)getHibernateTemplate().get(AgencyRequestTLs.class, agencyRequestId);
-		return agencyRequestTL;
-	}
-
-
-
-	
-	public void updateAgencyRequest(AgencyRequestTLs ageRequestTL) {
-		// TODO Auto-generated method stub
-		if(ageRequestTL!=null)
-		{
-			AgencyRequestTLs agencyRequestTL=getHibernateTemplate().get(AgencyRequestTLs.class,ageRequestTL.getAgencyRequestId());
-			agencyRequestTL.setUpdatedOn(ageRequestTL.getUpdatedOn());
-			agencyRequestTL.setStatus(ageRequestTL.getStatus());
-			agencyRequestTL.setCustomerId(ageRequestTL.getCustomerId());
-			agencyRequestTL.setComment(ageRequestTL.getComment());
-			agencyRequestTL.setApprovedBy(ageRequestTL.getApprovedBy());
-			
-			getHibernateTemplate().merge(ageRequestTL);
-		}
-	}
-
-	public Long insertAccountsPercentage(
-			AccountsPercentageTL accountsPercentageTL) {
-		// TODO Auto-generated method stub
-		return (Long)getHibernateTemplate().save(accountsPercentageTL);
-	}
-
-
-	public Long insertAgencyRequests(AgencyRequestTL agencyRequestTL) {
-		// TODO Auto-generated method stub
-		Long agencyRequestId=0L;
-		System.out.println(agencyRequestTL.getCustomerId()+"Agency Dao");
-	    agencyRequestId=(Long)getHibernateTemplate().save(agencyRequestTL);
-		return agencyRequestId;
-	}
-
-    public AgencyRequestTL getAgencyRequests(Long agencyRequestId) {
-		// TODO Auto-generated method stub
-		AgencyRequestTL agencyRequestTL=null;
-		System.out.println(agencyRequestId+"in dao requestId");
-		agencyRequestTL=(AgencyRequestTL)getHibernateTemplate().get(AgencyRequestTL.class, agencyRequestId);
-		System.out.println(agencyRequestId+"in dao return");
-		return agencyRequestTL;
-	}
-	public void updateAgencyRequests(AgencyRequestTL ageRequestTL) {
-		// TODO Auto-generated method stub
-		if(ageRequestTL!=null)
-		{
-			AgencyRequestTL agencyRequestTL=getHibernateTemplate().get(AgencyRequestTL.class,ageRequestTL.getAgencyRequestId());
-			agencyRequestTL.setUpdatedOn(ageRequestTL.getUpdatedOn());
-			agencyRequestTL.setStatus(ageRequestTL.getStatus());
-			agencyRequestTL.setCustomerId(ageRequestTL.getCustomerId());
-			agencyRequestTL.setComment(ageRequestTL.getComment());
-			agencyRequestTL.setApprovedBy(ageRequestTL.getApprovedBy());
-			
-			getHibernateTemplate().merge(ageRequestTL);
-		}
-		
-	}
-	public Integer updateUserNumber(Long customerId, String mobileNo) {
+   public Integer updateUserNumber(Long customerId, String mobileNo) {
 		// TODO Auto-generated method stub
 		Integer noOfRowsEffected = 0;
 		CustomerTL customerTL = (CustomerTL) getHibernateTemplate().get(
@@ -298,12 +223,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 		}
 		return customer;
 	}
-	public Long insertOperatorRequests(OperatorRequestTL operatorRequestTL) {
-		// TODO Auto-generated method stub
-		Long operatorRequestId=0L;
-		operatorRequestId=(Long)getHibernateTemplate().save(operatorRequestTL);
-		return operatorRequestId;
-	}
+	
 
 	public List<Map<String, Object>> getOperatorRequest(String status,Long agencyId) {
 		List<Map<String, Object>> operators=null;
@@ -329,28 +249,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 		return operators;
 	}
 
-   public OperatorRequestTL getOperatorRequest(Long requestId) {
-		OperatorRequestTL operatorRequestTL=null;
-		System.out.println(requestId+"in dao requestId");
-		operatorRequestTL=(OperatorRequestTL)getHibernateTemplate().get(OperatorRequestTL.class, requestId);
-		System.out.println(requestId+"in dao return");
-		return operatorRequestTL;
-	}
-
-	public void updateOperatorRequests(OperatorRequestTL operatorRequestTL) {
-		if(operatorRequestTL!=null)
-		{
-			OperatorRequestTL opRequestTL=getHibernateTemplate().get(OperatorRequestTL.class,operatorRequestTL.getOperatorRequestId());
-			opRequestTL.setUpdatedOn(operatorRequestTL.getUpdatedOn());
-			opRequestTL.setStatus(operatorRequestTL.getStatus());
-			opRequestTL.setCustomerId(operatorRequestTL.getCustomerId());
-			opRequestTL.setComment(operatorRequestTL.getComment());
-			opRequestTL.setApprovedBy(operatorRequestTL.getApprovedBy());
-			
-			getHibernateTemplate().merge(operatorRequestTL);
-		}
-		
-	}
+	
 	public boolean isCustomerExists(String userId) {
 		boolean isExists=false;
 		List customers=getHibernateTemplate().find("select userId from CustomerTL where userId=?",new Object[]{userId});
@@ -389,48 +288,11 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 
 
 
-	@Override
-	public OperatorPartnerRequestTL getoperatorPartnerRequests(Long operatorPartnerId) {
-		// TODO Auto-generated method stub
-		OperatorPartnerRequestTL operatorPartnerForm=null;
-		System.out.println(operatorPartnerId+"in dao requestId");
-		operatorPartnerForm=(OperatorPartnerRequestTL)getHibernateTemplate().get(OperatorPartnerRequestTL.class, operatorPartnerId);
-		System.out.println(operatorPartnerId+"in dao return");
-		return operatorPartnerForm;
-	}
 
 
 
-	@Override
-	public Integer updateOperatorPartnerRequest(Long customerId,String status) {
-		// TODO Auto-generated method stub
-	/*	if(OperatorPartnerRequestTL!=null)
-		{
-			System.out.println("IN DAO LAYER" +OperatorPartnerRequestTL.getOperatorPartnerId());
-			OperatorPartnerRequestTL OperatorPartnerRequestTL2 =getHibernateTemplate().get(OperatorPartnerRequestTL.class,OperatorPartnerRequestTL.getOperatorPartnerId());
-		//	OperatorPartnerRequestTL2.setUpdatedOn(OperatorPartnerRequestTL.getUpdatedOn());
-		//	OperatorPartnerRequestTL2.setStatus(OperatorPartnerRequestTL.getStatus());
-			OperatorPartnerRequestTL2.setCustomerId(OperatorPartnerRequestTL.getCustomerId());
-			
-			getHibernateTemplate().merge(OperatorPartnerRequestTL);
-		}
-	}
-		*/
-		Integer noOfRowsEffected = 0;
-		System.out.println(customerId);
-		System.out.println(status+"In dao Impl");
-		OperatorPartnerRequestTL OperatorPartnerRequestTL = new OperatorPartnerRequestTL();
-		//List customers=getHibernateTemplate().find("select customerId from OperatorPartnerRequestTL where customerId=?",new Object[]{customerId});
+
 	
-			OperatorPartnerRequestTL.setStatus(status);
-			getHibernateTemplate().bulkUpdate("update OperatorPartnerRequestTL set status =? where customerId=?",new Object[]{status,customerId});
-	
-	//	OperatorPartnerRequestTL OperatorPartnerRequestTL = (OperatorPartnerRequestTL) getHibernateTemplate().get(OperatorPartnerRequestTL.class, customerId);
-		
-		System.out.println(noOfRowsEffected+"Rows affaected");
-
-		return noOfRowsEffected;
-	}
 
 
 
@@ -577,10 +439,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 				new Object[] { status });
 	}
 
-	public OrderTL getOrder(Long orderId) {
-
-		return (OrderTL) getHibernateTemplate().get(OrderTL.class, orderId);
-	}
+	
 
 	@Override
 	public List<VehicleServiceTL> getVehicleDetails(Long requestId) {
@@ -592,7 +451,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 	@Override
 	public List<VehicleRtoServiceTL> getRTOVehicleDetails(Long requestId) {
 		// TODO Auto-generated method stub
-		return getHibernateTemplate().find("from VehicleRtoServiceTL where serviveRequestId=? order by serviveRequestId desc",
+		return getHibernateTemplate().find("from VehicleRtoServiceTL where serviceRequestId=? order by serviceRequestId desc",
 				new Object[] { requestId });
 	}
 
@@ -603,6 +462,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 		VehicleServiceTL orderTL = (VehicleServiceTL) getHibernateTemplate().get(VehicleServiceTL.class,
 				serviveRequestId);
 		if (orderTL != null) {
+			 Long userApproval = new Long(userRoleId);
 			orderTL.setUpdatedBy(userRoleId);
 			orderTL.setUpdatedOn(new java.sql.Date(new java.util.Date()
 					.getTime()));
@@ -611,7 +471,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 			orderTL.setVehicleName(vehicleName);
 			orderTL.setVehicleYear(vehicleYear);
 			orderTL.setIssues(issues);
-			
+			orderTL.setApprovedBy(userApproval);
 			getHibernateTemplate().update(orderTL);
 
 		}
@@ -625,6 +485,8 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 				serviveRequestId);
 		if (orderTL != null) {
 			orderTL.setUpdatedBy(userRoleId);
+		   Long userApproval = new Long(userRoleId);
+		   
 			orderTL.setUpdatedOn(new java.sql.Date(new java.util.Date()
 					.getTime()));
 			orderTL.setStatus(status);
@@ -632,6 +494,7 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 			orderTL.setVehicleName(vehicleName);
 			orderTL.setVehicleYear(vehicleYear);
 			orderTL.setIssues(issues);
+			orderTL.setApprovedBy(userApproval);
 			
 			getHibernateTemplate().update(orderTL);
 
@@ -645,5 +508,11 @@ public class CustomerDAOImpl extends CustomHibernateDaoSupport implements Custom
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().find("from VehicleRtoServiceTL where status=? order by serviceRequestId desc",
 				new Object[] { status });
+	}
+
+	@Override
+	public Integer updateOperatorPartnerRequest(Long userRoleId, String status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

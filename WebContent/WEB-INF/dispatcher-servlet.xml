@@ -71,40 +71,11 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 			<list>
 				<value>com.moaddi.dao.model.CustomerTL</value>
 				<value>com.moaddi.dao.model.UserRolesTL</value>
-				<value>com.moaddi.dao.model.WarehouseTL</value>
-				<value>com.moaddi.dao.model.MachineTL</value>
-				<value>com.moaddi.dao.model.LockTL</value>
-				<value>com.moaddi.dao.model.LockPriceTL</value>
-				<value>com.moaddi.dao.model.MachinePriceTL</value>
-				<value>com.moaddi.dao.model.AgencyRequestTLs</value> 
-				<value>com.moaddi.dao.model.ItemTL</value> 
-				<value>com.moaddi.dao.model.AccountsPercentageTL</value>
-				<value>com.moaddi.dao.model.ItemsPercentageTL</value>
-				<value>com.moaddi.dao.model.AgencyRequestTL</value> 
-				<value>com.moaddi.dao.model.OrderTL</value> 
-				<value>com.moaddi.dao.model.OrderDetailsTL</value> 
-				<value>com.moaddi.dao.model.MachineSalesTL</value> 
-				<value>com.moaddi.dao.model.LockSalesTL</value> 
-				<value>com.moaddi.dao.model.BranchTL</value> 
-				<value>com.moaddi.dao.model.BranchSalesmanTL</value> 
-				<value>com.moaddi.dao.model.WarehouseSalesmanTL</value> 
-				<value>com.moaddi.dao.model.OperatorRequestTL</value> 
-				<value>com.moaddi.dao.model.OperatorOrderTL</value> 
-				<value>com.moaddi.dao.model.OperatorOrderDetailsTL</value>
-				<value>com.moaddi.dao.model.AgencyMachineSalesTL</value> 
-				<value>com.moaddi.dao.model.AgencyLockSalesTL</value> 
-				<value>com.moaddi.dao.model.MachineSupplierTL</value> 
-				<value>com.moaddi.dao.model.MachineLockTL</value> 
-				<value>com.moaddi.dao.model.ItemPriceTL</value> 
-				<value>com.moaddi.dao.model.ItemQuantityTL</value> 
-				<value>com.moaddi.dao.model.ItemSupplierTL</value> 
 				<value>com.moaddi.dao.model.LocationTL</value> 
-				<value>com.moaddi.dao.model.MachinePartnerTL</value>
-				<value>com.moaddi.dao.model.ItemLockTL</value>
-				<value>com.moaddi.dao.model.OperatorPartnerRequestTL</value>
 				<value>com.moaddi.dao.model.VehicleServiceTL</value>
 				<value>com.moaddi.dao.model.VehicleAdTL</value>
 				<value>com.moaddi.dao.model.VehicleRtoServiceTL</value>
+				<value>com.moaddi.dao.model.LocationTL</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

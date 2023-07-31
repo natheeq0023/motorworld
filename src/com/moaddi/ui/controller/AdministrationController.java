@@ -24,24 +24,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.moaddi.dao.model.AgencyOrderRequestForm;
-import com.moaddi.dao.model.OrderDetailsTL;
+
+
 import com.moaddi.service.CustomerService;
-import com.moaddi.service.LockService;
-import com.moaddi.service.MachineService;
+
 import com.moaddi.service.UserRoleService;
 import com.moaddi.service.VehicleAdService;
-import com.moaddi.service.WarehouseService;
-import com.moaddi.service.dto.AgencyRequestDTO;
+
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.service.dto.LockDTO;
-import com.moaddi.service.dto.MachineDTO;
-import com.moaddi.service.dto.OrderDTO;
-import com.moaddi.service.dto.OrderDetailsDTO;
+
+
 import com.moaddi.service.dto.UserRoleDTO;
 import com.moaddi.service.dto.VehicleAdDTO;
 import com.moaddi.service.dto.VehicleServiceDTO;
-import com.moaddi.service.dto.WarehouseDTO;
+
 import com.moaddi.ui.forms.AccountForm;
 import com.moaddi.ui.forms.AgencyRequestForm;
 import com.moaddi.ui.forms.BarcodeForm;
@@ -57,78 +53,19 @@ public class AdministrationController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
-	@Autowired
-	private WarehouseService warehouseService;
+	
+
 	@Autowired
 	private CustomerService customerService;
 	@Autowired
 	private UserRoleService userRoleService;
 	@Autowired
-	private MachineService machineService;
-	@Autowired
-	private LockService lockService;
-	@Autowired
 	private VehicleAdService vehicleAdService;
 
-	private void initModelList(Model model) {
-
-		List<WarehouseDTO> warehouseList = warehouseService
-				.loadWarehouseIdsSnos();
-		model.addAttribute("warehouseList", warehouseList);
-
-	}
-	@RequestMapping(method = RequestMethod.GET, value = "/admin/checkmachinesno")
-	public @ResponseBody String getCheckMachineInJSON(@RequestParam("machineSerialNo")
-			String machineSerialNo) {
-				String result = null;
-				if (machineSerialNo != null) {
-					try {
-						boolean isExists=machineService.isMachineExist(machineSerialNo.toUpperCase());
-						
-							
-							if(isExists)
-							{	
-								return "{\"msg\":\"fail\"}";
-							}
-							else
-							{
-								return "{\"msg\":\"success\"}";
-							}
-					
-					} catch (Exception e) {
-						e.printStackTrace();
-						return "fail";
-					}
-				}
-				
-				return result;
-			}
+	
+	
 			
-	@RequestMapping(method = RequestMethod.GET, value = "/admin/checklocksno")
-	public @ResponseBody String getCheckLockInJSON(@RequestParam("lockSerialNo")
-			String lockSerialNo) {
-				String result = null;
-			    if (lockSerialNo != null) {
-					try {
-						boolean isExists=lockService.isLockExist(lockSerialNo.toUpperCase());
-						if(isExists)
-							{	
-								return "{\"msg\":\"fail\"}";
-							}
-							else
-							{
-								return "{\"msg\":\"success\"}";
-							}
-					
-					} catch (Exception e) {
-						e.printStackTrace();
-						return "fail";
-					}
-				}
-				
-				return result;
-			}
-			
+	
 
 	@RequestMapping("/admin/adminhome")
 	public String showCreateAccount(HttpServletRequest response) {
@@ -151,19 +88,12 @@ public class AdministrationController {
 		return "admincreateAd.page";
 	}
 	
-	/*************************barcode code start heare *********************************/
-	@RequestMapping(method = RequestMethod.GET, value = "/admin/createmachinebarcode")
-	public String initMachineBarcodeForm(Model model ) {
-		BarcodeForm machineForm = new BarcodeForm();
-
-		model.addAttribute("createmachinebarcode", machineForm);
-
-		initModelList(model);
+	private void initModelList(Model model) {
+		// TODO Auto-generated method stub
 		
-
-		return "admincreatemachinebarcode.page";
-
 	}
+	/*************************barcode code start heare *********************************/
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/createmachinebarcode")
 	public String submitMachineForm(BarcodeForm machineForm, ModelMap modelMap,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -224,61 +154,6 @@ public class AdministrationController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "/admin/createmachine")
-	public String submitMachineForm(MachineForm machineForm, ModelMap modelMap,
-			HttpServletRequest request, HttpServletResponse response) {
-
-		if (machineForm != null) {
-			MachineDTO machineDTO = new MachineDTO();
-			machineDTO.setMachineColour(machineForm.getMachineColor());
-			machineDTO.setMachineDepth(machineForm.getDepth());
-			machineDTO.setMachineHeight(machineForm.getHeight());
-			machineDTO.setMachineKind(machineForm.getMachineKind());
-			machineDTO.setMachineModel(machineForm.getMachineModel());
-			machineDTO.setMachinePhotoName(machineForm.getMachinePhoto()
-					.getOriginalFilename());
-			machineDTO.setMachineSno(machineForm.getMachineSerialNo().toUpperCase());
-			machineDTO.setMachineWeight(machineForm.getWeight());
-			machineDTO.setMachineWidth(machineForm.getWidth());
-			machineDTO.setStatus("Active");
-			machineDTO.setWarehouseId(machineForm.getWarehouseId());
-			
-			
-			Long machineId = machineService.saveMachine(machineDTO);
-			if (machineId != null) {
-
-				MultipartFile multiFile = machineForm.getMachinePhoto();
-				try {
-					// just to show that we have actually received the file
-
-					String fileName = multiFile.getOriginalFilename();
-
-					String path = request.getSession().getServletContext()
-							.getRealPath("/");
-                     System.out.println("path "+path);
-					// making directories for our required path.
-					byte[] bytes = multiFile.getBytes();
-					File directory = new File(path + "/uploads/machine/"
-							+ machineId);
-					directory.mkdirs();
-					
-					// saving the file
-					File file = new File(directory.getAbsolutePath()
-							+ System.getProperty("file.separator") + fileName);
-					BufferedOutputStream stream = new BufferedOutputStream(
-							new FileOutputStream(file));
-					stream.write(bytes);
-					stream.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-
-				}
-			}
-		}
-		return "redirect:createmachine.htm?s=success";
-
-	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/createAd")
 	public String submitAdForm(VehicleAdForm vehicleAdForm, ModelMap modelMap,
@@ -330,72 +205,9 @@ public class AdministrationController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, value = "/admin/createlock")
-	public String initLockForm(Model model) {
+	
 
-		LockForm lockForm = new LockForm();
-
-		model.addAttribute("createlock", lockForm);
-
-		initModelList(model);
-
-		return "admincreatelock.page";
-
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/admin/createlock")
-	public String submitLockForm(LockForm lockForm,ModelMap modelMap,
-			HttpServletRequest request, HttpServletResponse response) {
-
-		if (lockForm != null) {
-			LockDTO lockDTO = new LockDTO();
-			lockDTO.setLockColour(lockForm.getLockColor());
-			lockDTO.setLockDepth(lockForm.getDepth());
-			lockDTO.setLockHeight(lockForm.getHeight());
-			lockDTO.setLockKind(lockForm.getLockKind());
-			lockDTO.setLockModel(lockForm.getLockModel());
-			lockDTO.setLockPhotoName(lockForm.getLockPhoto()
-					.getOriginalFilename());
-			lockDTO.setLockSno(lockForm.getLockSerialNo());
-			lockDTO.setLockWeight(lockForm.getWeight());
-			lockDTO.setLockWidth(lockForm.getWidth());
-			lockDTO.setStatus("Active");
-			lockDTO.setWarehouseId(lockForm.getWarehouseId());
-			Long lockId=lockService.saveLock(lockDTO);
-			if (lockId != null) {
-
-				MultipartFile multiFile = lockForm.getLockPhoto();
-				try {
-					// just to show that we have actually received the file
-
-					String fileName = multiFile.getOriginalFilename();
-
-					String path = request.getSession().getServletContext()
-							.getRealPath("/");
-                     
-					// making directories for our required path.
-					byte[] bytes = multiFile.getBytes();
-					File directory = new File(path + "/uploads/lock/"
-							+ lockId);
-					directory.mkdirs();
-					// saving the file
-					File file = new File(directory.getAbsolutePath()
-							+ System.getProperty("file.separator") + fileName);
-					BufferedOutputStream stream = new BufferedOutputStream(
-							new FileOutputStream(file));
-					stream.write(bytes);
-					stream.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-
-				}
-			}
-		}
-		return "redirect:createlock.htm?s=success";
-
-	}
-
+	
 	
 	@RequestMapping("/admin/createaccount")
 	public String showCreateAccount(HttpServletRequest request,Model model) {
@@ -559,138 +371,7 @@ public class AdministrationController {
 		return "adminagency.page";
 	}
 	
-	/*@RequestMapping("/admin/viewagency")
-	public String showViewAgency(HttpServletRequest request,Model model) {
-		
-		String id=request.getParameter("i");
-		Integer requestId=new Integer(id);
-		if(requestId!=null)
-		{
-			AgencyRequestDTOs agencyRequestDTO=customerService.loadAgencyRequest(requestId);
-			if(agencyRequestDTO!=null)
-			{
-				CustomerDTO customerDTO=customerService.loadCustomer(agencyRequestDTO.getCustomerId());
-				request.setAttribute("customer", customerDTO);
-				request.setAttribute("agency", agencyRequestDTO);
-				
-			}
-			
-		}
-		return "adminviewagency.page";
-	}
-	*/
-	@RequestMapping("/admin/viewagency")
-	public String showViewAgency(HttpServletRequest request,Model model) {
-		
-		String id=request.getParameter("i");
-		Long requestId=new Long(id);
-		
-		if(requestId!=null)
-		{
-			AgencyRequestDTO agencyRequestDTO=customerService.loadAgencyRequests(requestId);
-			
-			if(agencyRequestDTO!=null)
-			{
-				CustomerDTO customerDTO=customerService.loadCustomer(agencyRequestDTO.getCustomerId());
-				request.setAttribute("customer", customerDTO);
-				request.setAttribute("agency", agencyRequestDTO);
-				
-			}
-			
-		}
-		return "adminviewagency.page";
-	}
-	@RequestMapping(method = RequestMethod.POST, value = "/admin/viewagency")
-	public String agencyStatus(AgencyRequestForm agencyRequestForm, ModelMap modelMap,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		AgencyRequestDTO agencyRequestDTO=new AgencyRequestDTO();
-		agencyRequestDTO.setComment(agencyRequestForm.getComment());
-		agencyRequestDTO.setAgencyRequestId(agencyRequestForm.getAgencyRequestId());
-		
-		UserRoleDTO userRoleDTO=new UserRoleDTO();
-		userRoleDTO.setAccountKind("Other Account");
-		userRoleDTO.setStatus("Active");
-		userRoleDTO.setCreatedBy(1L);
-		userRoleDTO.setCity(agencyRequestForm.getCity());
-		userRoleDTO.setCountry(agencyRequestForm.getCountry());
-		userRoleDTO.setFullName(agencyRequestForm.getFullName());
-		userRoleDTO.setCustomerId(agencyRequestForm.getCustomerId());
-		userRoleDTO.setUserRole("Agency");
-		
-		
-		
-		/**agency Id creation *************************/
-		/**getting of countrycode and email code start heare ***************/
-		String countryCode=agencyRequestForm.getCountryCode();
-		String NewString = countryCode.replace("+", "");
-		System.out.println(NewString+"NewString");
-		String NewRole="AG";
-		/***********generate random userId and password******************/
-		if(agencyRequestForm.getStatus().equals("Accept"))
-		{
-		int n = 3;
-		Random randGen = new Random();
-
-		int startNum = (int) Math.pow(10, n-1);
-		int range = (int) (Math.pow(10, n) - startNum + 1);
-		
-		int randomuserId = randGen.nextInt(range) + startNum;
-		String userId=NewString+NewRole+randomuserId;
-		System.out.println(userId+"user role basedon");
-		int randomPassword = randGen.nextInt(range) + startNum;
-		String password=NewString+randomPassword;
-		
-		 /*code start mail ################################*/
-		String email=agencyRequestForm.getEmail();
-		System.out.println(email+"email1");
-	 	 SimpleMailMessage email1 = new SimpleMailMessage();
-	 	 email1.setTo(email);
-	 	email1.setSubject("YouruserName and Password");
-	 	email1.setText(agencyRequestForm.getComment()+"  "+"userIdNo:"+userId+"   "+"password is:"+password);
-			
-			// sends the e-mail
-			mailSender.send(email1);
-	 	   //send userId password to user roles table
-			System.out.println(userId+"randomuserId");
-			System.out.println(password+"randomPassword");
-			/*  code end mail ################################*/
-			userRoleDTO.setUserId(userId);
-			userRoleDTO.setPassword(password);
-			Long userRoleId = userRoleService.saveUserRole(userRoleDTO);
-			
-			
-		}
-		else if(agencyRequestForm.getStatus().equals("Reject"))
-		{
-			 /*code start mail ################################*/
-			String email=agencyRequestForm.getEmail();
-			System.out.println(email+"email1");
-		 	 SimpleMailMessage email1 = new SimpleMailMessage();
-		 	 email1.setTo(email);
-		 	email1.setSubject("YourAgencyRequestISRejected");
-		 	email1.setText("BecauseOfThisReason:"+agencyRequestForm.getComment());
-				// sends the e-mail
-				mailSender.send(email1);
-				/*  code end mail ################################*/
-				
-			
-		}
-	 	
-		
-		 
-		/**creation of userId and password code end heare ***************/
-		
-		/**agency Id end *************************/
-		agencyRequestDTO.setStatus(agencyRequestDTO.getStatus());
-		customerService.modifyAgencyRequests(agencyRequestDTO);
-		
-		return "redirect:agency.htm?st="
-		+ agencyRequestForm.getStatus() + "&s=success";
-			
-		}
 	
-    /*   Accounts code*/
 	
 	@RequestMapping(method = RequestMethod.GET,value="/admin/profile")
 	public String AdminProfile(HttpServletRequest request) {
@@ -811,81 +492,6 @@ public class AdministrationController {
 
 
 	
-	/*@RequestMapping(method = RequestMethod.POST, value = "/admin/viewagency")
-	public String agencyStatus(AgencyRequestForms agencyRequestForm, ModelMap modelMap,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		AgencyRequestDTOs agencyRequestDTO=new AgencyRequestDTOs();
-		agencyRequestDTO.setComment(agencyRequestForm.getComment());
-		agencyRequestDTO.setAgencyRequestId(agencyRequestForm.getAgencyRequestId());
-		
-		*//**agency Id creation *************************//*
-		*//**getting of countrycode and email code start heare ***************//*
-		
-		String countryCode=agencyRequestForm.getCountryCode();
-		String email=agencyRequestForm.getEmail();
-		System.out.println(email+"email");
-		String NewString = countryCode.replace("+", "");
-		System.out.println(NewString+"NewString");
-		String NewRole="Ag";
-		*//***********generate random userId and password******************//*
-		if(agencyRequestForm.getStatus().equals("Accept"))
-		{
-		int n = 3;
-		Random randGen = new Random();
-
-		int startNum = (int) Math.pow(10, n-1);
-		int range = (int) (Math.pow(10, n) - startNum + 1);
-		
-		int randomuserId = randGen.nextInt(range) + startNum;
-		String userId=NewString+NewRole+randomuserId;
-		System.out.println(userId+"user role basedon");
-		int randomPassword = randGen.nextInt(range) + startNum;
-		String password=NewString+randomPassword;
-		
-		 code start mail ################################
-	 	  
-	 	  SimpleMailMessage email1 = new SimpleMailMessage();
-	 	 email1.setTo(email);
-	 	email1.setSubject("Your userName and Password");
-	 	email1.setText("userIdNo:"+userId+"password is:"+password);
-			
-			// sends the e-mail
-			mailSender.send(email1);
-	 	   //send userId password to user roles table
-			System.out.println(userId+"randomuserId");
-			System.out.println(password+"randomPassword");
-		}
-	 	   
-	 	  code end mail ################################
-		
-		
-		*//**creation of userId and password code end heare ***************//*
-		
-		*//**agency Id end *************************//*
-		agencyRequestDTO.setStatus(agencyRequestDTO.getStatus());
-		customerService.modifyAgencyRequest(agencyRequestDTO);
-		
-		return "redirect:agency.htm?st="
-		+ agencyRequestForm.getStatus() + "&s=success";
-			
-		}
-	
-*/
-	@RequestMapping("/admin/agencyorders")
-	public String showAgencyOrders(HttpServletRequest request,Model model) {
-		
-		String status=request.getParameter("q");
-		if(status==null || status.trim().equals(""))
-		{
-			status="Pending";
-			
-		}
-		List<OrderDTO> orders=machineService.loadOrders(status);
-		System.out.println(orders);
-		request.setAttribute("orders", orders);
-		return "adminagencyorders.page";
-	}
 	
 	@RequestMapping("/admin/customerVehicleService")
 	public String showCustomerOrders(HttpServletRequest request,Model model) {
@@ -911,9 +517,17 @@ public class AdministrationController {
 		{
 			
 			
-			List<VehicleServiceDTO> orderDetails=customerService.loadRTOOrder(requestId);
+			List<VehicleServiceDTO> orderDetails=customerService.loadOrder(requestId);
 			if(orderDetails!=null)
 			{
+				for(int i=0;i<orderDetails.size();i++)
+				{
+					String vName = orderDetails.get(i).getVehicleName();
+					String vyear = orderDetails.get(i).getVehicleYear();
+					request.setAttribute("vName",vName);
+					request.setAttribute("vyear",vyear);
+				}
+				
 				request.setAttribute("orderDetails",orderDetails);
 			
 			}
@@ -930,7 +544,7 @@ public class AdministrationController {
 		UserRoleDTO userRoleDTO=(UserRoleDTO)request.getSession().getAttribute("userRole");
 		String id=request.getParameter("i");
 		Long requestId=new Long(id);
-		
+		System.out.println(request.getSession().getAttribute("userRole")+ "user role id");
 		
 		
 		if(userRoleDTO!=null)
@@ -968,15 +582,21 @@ public class AdministrationController {
 		{
 			
 			
-			List<VehicleServiceDTO> orderDetails=customerService.loadOrder(requestId);
+			List<VehicleServiceDTO> orderDetails=customerService.loadRTOOrder(requestId);
 			if(orderDetails!=null)
 			{
+				for(int i=0;i<orderDetails.size();i++)
+				{
+					String vName = orderDetails.get(i).getVehicleName();
+					String vyear = orderDetails.get(i).getVehicleYear();
+					request.setAttribute("vName",vName);
+					request.setAttribute("vyear",vyear);
+				}
+				
 				request.setAttribute("orderDetails",orderDetails);
 			
 			}
-			 for(int i = 0; i < orderDetails.size(); i++) {
-		            System.out.println(orderDetails.get(i).getVehicleSeviceRequestId());
-		        }
+			 
 			
 			
 		}
@@ -1001,43 +621,6 @@ public class AdministrationController {
 		+ vehicleServiceForm.getStatus() + "&s=success";
 	}
 	
-	@RequestMapping("/admin/viewagencyorder")
-	public String showViewAgencyOrder(HttpServletRequest request,Model model) {
-		
-		String id=request.getParameter("i");
-		Long requestId=new Long(id);
-		
-		if(requestId!=null)
-		{
-			OrderDTO order=machineService.loadOrder(requestId);
-			request.setAttribute("order",order);
-			
-			List<OrderDetailsDTO> orderDetails=machineService.loadOrderDetails(requestId);
-			if(orderDetails!=null)
-			{
-				request.setAttribute("orderDetails",orderDetails);
-			}
-			WarehouseDTO warehouseDTO=warehouseService.loadWarehouse(order.getWarehouseId());
-			request.setAttribute("warehouse", warehouseDTO);
-			Map<String, Object> agency=customerService.loadCustomerUserRole(order.getCreatedBy());
-			System.out.println(agency+"...aggg");
-			request.setAttribute("agency", agency);
-			
-		}
-		return "adminviewagencyorder.page";
-	}
-	@RequestMapping(method = RequestMethod.POST, value = "/admin/viewagencyorder")
-	public String agencyOrderStatus(AgencyOrderRequestForm agencyOrderRequestForm, ModelMap modelMap,
-			HttpServletRequest request, HttpServletResponse response) {
-		UserRoleDTO userRoleDTO=(UserRoleDTO)request.getSession().getAttribute("userRole");
-		if(userRoleDTO!=null)
-		{
-			machineService.modifyOrder(agencyOrderRequestForm.getOrderId(), agencyOrderRequestForm.getComment(), agencyOrderRequestForm.getStatus(), userRoleDTO.getFullName());
-		}
-		
-		return "redirect:agencyorders.htm?q="
-		+ agencyOrderRequestForm.getStatus() + "&s=success";
-	}
 	
 	
 }

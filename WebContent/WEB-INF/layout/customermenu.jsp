@@ -3,8 +3,8 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <span class="pull-left lang_conv" >
-                  <button class="btn btn-warning">RGS</button>
-                 <!--  <button class="btn btn-success">A</button> -->
+                  <button class="btn btn-warning">MOTOR</button>
+                  <button class="btn btn-success">WORLD</button> 
                 </span>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -15,7 +15,7 @@
 
                 <a class="navbar-brand mob_logo" href="">
                     <span>
-                        <b style="font-weight:bold;font-size:30px;color:purple">Form-29</b>
+<!--                         <b style="font-weight:bold;font-size:30px;color:purple">Form-29</b> -->
                        
                     <span>
                 </a>
@@ -68,8 +68,8 @@
                     <li>
                         <a href="myorders.htm?cid=${sessionScope.authUser.customerId }"><i class="fa fa-fw fa-table"></i>My Request</a>
                     </li>
-                    <!--   <li>
-                        <a href=""><i class="fa fa-fw fa-table"></i>Delivery Note</a>
+                     <li>
+                  <!--        <a href="deliveryNote.htm"><i class="fa fa-fw fa-table"></i>Delivery Note</a>
                     </li>
                      <li>
                         <a href="agencyrequest.htm"><i class="fa fa-fw fa-table"></i>Traffic Fine </a>

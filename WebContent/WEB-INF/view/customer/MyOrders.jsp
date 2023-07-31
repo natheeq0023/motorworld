@@ -44,7 +44,10 @@ tr {
 </style>
 
 
-<!-- row  -->
+
+   <!-- end row -->
+   <c:if test="${requestScope.serviceorders ne null}">
+   <!-- row  -->
    <div class="row">
    
    
@@ -56,11 +59,9 @@ tr {
     </div>
                     
    </div>
-   <!-- end row -->
-   <c:if test="${requestScope.serviceorders ne null}">
    <!-- row  -->
    <div class="row">
-        <div class="col-md-9">
+        <div class="card-body">
    <div id="no-more-tables">
             <table class="col-md-9 table-bordered table-striped table-condensed cf">
         		<thead class="cf">
@@ -148,7 +149,11 @@ tr {
    </div> 
    <div>
    </div>
-   <div class="row">
+  
+   <!-- end row -->
+   <c:if test="${requestScope.orders ne null}">
+   <!-- row  -->
+    <div class="row">
    
    
    <div class="col-xs-8 col-md-8" align="center">
@@ -159,11 +164,9 @@ tr {
     </div>
                     
    </div>
-   <!-- end row -->
-   <c:if test="${requestScope.orders ne null}">
-   <!-- row  -->
+   
    <div class="row">
-        <div class="col-md-9">
+        <div class="card-body">
    <div id="no-more-tables">
             <table class="col-md-9 table-bordered table-striped table-condensed cf">
         		<thead class="cf">

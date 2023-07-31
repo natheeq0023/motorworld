@@ -14,20 +14,9 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moaddi.dao.MachineDAO;
+
 import com.moaddi.dao.VehicleAdDAO;
-import com.moaddi.dao.model.AgencyMachineSalesTL;
-import com.moaddi.dao.model.LockTL;
-import com.moaddi.dao.model.MachineLockTL;
-import com.moaddi.dao.model.MachinePartnerTL;
-import com.moaddi.dao.model.MachinePriceTL;
-import com.moaddi.dao.model.MachineSalesTL;
-import com.moaddi.dao.model.MachineSupplierTL;
-import com.moaddi.dao.model.MachineTL;
-import com.moaddi.dao.model.OperatorOrderDetailsTL;
-import com.moaddi.dao.model.OperatorOrderTL;
-import com.moaddi.dao.model.OrderDetailsTL;
-import com.moaddi.dao.model.OrderTL;
+
 import com.moaddi.dao.model.VehicleAdTL;
 import com.moaddi.dao.utility.CustomHibernateDaoSupport;
 

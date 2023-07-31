@@ -79,10 +79,16 @@ tr {
 							Vehicle Brand
 						</th>
 						<th class="lbl-lableinfo">
+							 Model Name
+						</th>
+						<th class="lbl-lableinfo">
+							 Year
+						</th>
+						<th class="lbl-lableinfo">
 							 Area
 						</th>
 						<th class="lbl-lableinfo">
-							 Name
+							Customer Name
 						</th>
 						
         				<th class="lbl-lableinfo">
@@ -119,6 +125,12 @@ tr {
         				</td>
         				<td>
         					${orderDetail.vbrand }
+        				</td>
+        				<td>
+        					${orderDetail.vehicleName }
+        				</td>
+        				<td>
+        					${orderDetail.vehicleYear }
         				</td>
         				<td>
         					${orderDetail.area }
@@ -166,7 +178,7 @@ tr {
    </div>
    <div class="col-xs-5 col-md-6">
         <div class="form-group">
-         <input type="text" name="vehicleName" > 
+         <input type="text" name="vehicleName"  value=${requestScope.vName }> 
          	
          
          </div>
@@ -182,7 +194,7 @@ tr {
    </div>
    <div class="col-xs-5 col-md-6">
         <div class="form-group">
-         <input type="text" name="vehicleYear" id="vehicleYear" > 
+         <input type="text" name="vehicleYear" id="vehicleYear" value= ${requestScope.vyear }> 
          	
          
          </div>

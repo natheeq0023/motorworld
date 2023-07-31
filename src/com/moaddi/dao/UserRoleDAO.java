@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
+
 import com.moaddi.dao.model.UserRolesTL;
 
 public interface UserRoleDAO {
@@ -29,8 +29,6 @@ public interface UserRoleDAO {
 	public List<Map<String, Object>> getUsers(String userRole,String country,String city);
 	public List<Map<String, Object>> getNotConnectedSuppliers(Long createdBy,Long machineId);
 	public List<Map<String, Object>> getConnectedSuppliers(Long createdBy,Long machineId);
-	public Long inserOperatorRequestPartnerDetails(
-			OperatorPartnerRequestTL orderTL);
 	
 	
 }

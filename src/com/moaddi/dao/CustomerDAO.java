@@ -3,13 +3,9 @@ package com.moaddi.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.moaddi.dao.model.AccountsPercentageTL;
-import com.moaddi.dao.model.AgencyRequestTL;
-import com.moaddi.dao.model.AgencyRequestTLs;
+
 import com.moaddi.dao.model.CustomerTL;
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
-import com.moaddi.dao.model.OperatorRequestTL;
-import com.moaddi.dao.model.OrderTL;
+
 import com.moaddi.dao.model.VehicleRtoServiceTL;
 import com.moaddi.dao.model.VehicleServiceTL;
 import com.moaddi.service.dto.CustomerDTO;
@@ -24,36 +20,33 @@ public interface CustomerDAO {
 	public CustomerTL getCustomer(String userId,String password);
 	public Integer updateUserPassword(Long customerId, String password);
 	public CustomerTL getCustomer(Long customerId);
-	public Integer insertAgencyRequest(AgencyRequestTLs agencyRequestTL);
+	
 	public List<Map<String, Object>> getAgency(String status);
-	public AgencyRequestTLs getAgencyRequest(Integer agencyRequestId);
-	public void updateAgencyRequest(AgencyRequestTLs agencyRequestTL);
-	public Long insertAccountsPercentage(AccountsPercentageTL accountsPercentageTL);
+	
+	
 	/*********************************************/
 	public Map<String, Object> getUser(Long customerId);
 	
 	/************based on requestform*************************/
-	public Long insertAgencyRequests(AgencyRequestTL agencyRequestTL);
+	
 	public Long insertServiceRequest(VehicleServiceTL vehicleServiceTL);
 	public Long insertRtoServiceRequest(VehicleRtoServiceTL vehicleRtoServiceTL);
-	public AgencyRequestTL getAgencyRequests(Long agencyRequestId);
-	public void updateAgencyRequests(AgencyRequestTL agencyRequestTL);
+	
 	public Integer updateUserNumber(Long customerId, String mobileNo);
 	public Map<String, Object> getCustomerUserRole(Long userRoleId);
 	public List<VehicleRtoServiceTL> getOrders(Long createdBy);
-	public Long insertOperatorRequests(OperatorRequestTL operatorRequestTL);
+	
 
 	public List<Map<String, Object>> getOperatorRequest(String status,Long agencyId);
 
-	public OperatorRequestTL getOperatorRequest(Long requestId);
+	
 
-	public void updateOperatorRequests(OperatorRequestTL operatorRequestTL);
+	
 	public boolean isCustomerExists(String userId);
 
 	public List<Map<String, Object>> getOperatorPartner(String status);
 
-	public OperatorPartnerRequestTL getoperatorPartnerRequests(
-			Long operatorPartnerId);
+	
 
 	public Integer updateOperatorPartnerRequest(Long userRoleId, String status);
 	

@@ -43,8 +43,8 @@ tr {
 }
 </style>
 
-
-<form action="" method="post" onsubmit="return validate(this);" >
+  
+ 
 <!-- row  -->
    <div class="row">
    
@@ -77,6 +77,12 @@ tr {
 						</th>
 						<th class="lbl-lableinfo">
 							Vehicle Brand
+						</th>
+						<th class="lbl-lableinfo">
+							Vehicle Model
+						</th>
+						<th class="lbl-lableinfo">
+							MFG Year
 						</th>
 						<th class="lbl-lableinfo">
 							 Area
@@ -121,6 +127,12 @@ tr {
         					${orderDetail.vbrand }
         				</td>
         				<td>
+        					${orderDetail.vehicleName }
+        				</td>
+        				<td>
+        					${orderDetail.vehicleYear }
+        				</td>
+        				<td>
         					${orderDetail.area }
         				</td>
         				<td>
@@ -158,7 +170,7 @@ tr {
         <!-- end row  -->
         </c:if>
         <br/>
-      
+   <form action="" method="post" role="form" id="registerform" name="registerform" id ="registerform" >
    <div class="row">
    
    <div class="col-xs-5 col-md-2" align="right">
@@ -166,7 +178,7 @@ tr {
    </div>
    <div class="col-xs-5 col-md-6">
         <div class="form-group">
-         <input type="text" name="vehicleName" > 
+         <input type="text" name="vehicleName" id="vehicleName" value=${requestScope.vName } > 
          	
          
          </div>
@@ -182,7 +194,7 @@ tr {
    </div>
    <div class="col-xs-5 col-md-6">
         <div class="form-group">
-         <input type="text" name="vehicleYear" id="vehicleYear" > 
+         <input type="text" name="vehicleYear" id="vehicleYear" value=${requestScope.vyear }  > 
          	
          
          </div>
@@ -192,6 +204,7 @@ tr {
    </div>
   
    <!-- row  -->
+   
    <div class="row">
    
    <div class="col-xs-5 col-md-2" align="right">
@@ -229,7 +242,7 @@ tr {
    <div class="row">
    
    <div class="col-xs-5 col-md-2" align="right">
-   		 <input type="submit" class="btn btn-success btn-bold" id="btnAccept" name="status" value="Completed" />
+   		 <input type="submit" class="btn btn-success btn-bold" id="btnAccept" name="status" value="Completed"  />
    </div>
    <div class="col-xs-5 col-md-2">
         <div class="form-group">
@@ -238,53 +251,55 @@ tr {
          </div>
                           
     </div>
-                    
+     
+             
    </div>
    <!-- end row -->
-
-   </form>
+ </form>    
    
    
  <script type="text/javascript">
-	function validate(formObj)
-	{
-		
-		if(formObj.comment.value=="")
-		{
-			valid=false;
-			alert("please enter Comments");
-			$('#comment').focus()
-			
-			return false;
-		}
 	
-			if(formObj.issues.value=="")
-		{
-			valid=false;
-			alert("please enter issues");
-			$('#issues').focus()
-			
-			return false;
-		}
-		 if(formObj.vehicleYear.value=="")
-		{
-			valid=false;
-			alert("please enter vehicle Year");
-			$('#machineModel').focus()
-			
-			return false;
-		}
-		if(formObj.vehicleName.value=="")
-		{
-			valid=false;
-			alert("please Capture vehicleName");
-			$('#vehicleName').focus()
-			
-			return false;
-		}
-		
-		
-		return true;
-	}
+	
+	
+	$(document).ready(function() {
+		  $("#registerform").validate({
+		    messages: {
+          
+		    	comment: {
+		        required: "Enter Current status"
+		      },
+		      issues: {
+		        required: "Enter Customer Problem"
+		      },
+		      vehicleName: {
+		        required: "Enter Vehicle Name"
+		      },
+		      vehicleYear: {
+		        required: "Enter model number"
+		      }
+		    
+		    },
+		    rules: {
+		    	comment: "required",
+		    	issues: "required",
+		    	vehicleName: "required",
+		    	vehicleYear: "required",
+
+		      
+		    },
+
+		  });
+
+
+
+		  $('#btnAccept').click(function() {
+		    $("#registerform").valid();
+
+		  });
+		 
+		});
+	
+	
 	
 </script>

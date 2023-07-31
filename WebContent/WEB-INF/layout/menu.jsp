@@ -1,10 +1,11 @@
  <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
+            
             <div class="navbar-header">
                 <span class="pull-left lang_conv" >
-                  <button class="btn btn-warning">RGS</button>
-                <!--   <button class="btn btn-success">A</button> -->
+                  <button class="btn btn-warning">MOTOR</button>
+               <button class="btn btn-success">WORLD</button> 
                 </span>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -13,13 +14,13 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand mob_logo" href="">
+<!--                 <a class="navbar-brand mob_logo" href="">
                     <span>
-                        <b style="font-weight:bold;font-size:30px;color:purple">Form - 29</b>
-                    <!--     <b style="font-weight:bold;font-size:30px;color:#000">addi</b>  -->
+                        <b style="font-weight:bold;font-size:30px;color:purple">Motor World</b>
+                        <b style="font-weight:bold;font-size:30px;color:#000">addi</b> 
                     <span>
                 </a>
-            </div>
+ -->            </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav hide-on-mobile">
                  <li>

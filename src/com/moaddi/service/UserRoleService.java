@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.moaddi.dao.model.UserRolesTL;
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.service.dto.OperatorPartnerDetailsDTO;
+
 import com.moaddi.service.dto.UserRoleDTO;
 
 /**
@@ -39,8 +39,7 @@ public interface UserRoleService {
 			String city);
 	public List<Map<String, Object>> loadNotConnectedSuppliers(Long createdBy,Long machineId);
 	public List<Map<String, Object>> loadConnectedSuppliers(Long createdBy,Long machineId);
-	public Long saveOperatorDetails(
-			OperatorPartnerDetailsDTO operatorPartnerDetailsDTO);
+	
 	
 
 }

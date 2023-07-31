@@ -27,15 +27,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.moaddi.service.CustomerService;
-import com.moaddi.service.LockService;
-import com.moaddi.service.MachineService;
+ 
 import com.moaddi.service.UserRoleService;
-import com.moaddi.service.WarehouseService;
+ 
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.service.dto.LockDTO;
-import com.moaddi.service.dto.MachineDTO;
+ 
 import com.moaddi.service.dto.UserRoleDTO;
-import com.moaddi.service.dto.WarehouseDTO;
+ 
 import com.moaddi.ui.forms.AccountForm;
 import com.moaddi.ui.forms.WarehouseForm;
 
@@ -50,12 +48,7 @@ public class ManagerController {
 	private CustomerService customerService;
 	@Autowired
 	private UserRoleService userRoleService;
-	@Autowired
-	private WarehouseService warehouseService;
-	@Autowired
-	private MachineService machineService;
-	@Autowired
-	private LockService lockService;
+	
 
 	@RequestMapping("/manager/signout")
 	public String showSignout(HttpServletRequest response) {
@@ -63,33 +56,7 @@ public class ManagerController {
 		return "redirect:../otherlogin.htm?suMsg=Your successfully Signedout";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/manager/checkwarehousesno")
-	public @ResponseBody
-	String getCheckWarehouseInJSON(@RequestParam("warehouseSNO")
-	String warehouseSNO) {
-
-		String result = null;
-
-		if (warehouseSNO != null) {
-			try {
-				boolean isExists = warehouseService
-						.isWarehouseExist(warehouseSNO.toUpperCase());
-
-				if (isExists) {
-					return "{\"msg\":\"fail\"}";
-				} else {
-					return "{\"msg\":\"success\"}";
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "{\"msg\":\"fail\"}";
-			}
-		}
-
-		return result;
-	}
-
+	 
 	@RequestMapping("/manager/createaccount")
 	public String showCreateAccount(HttpServletRequest response) {
 		System.out.println("control in manager");
@@ -347,189 +314,10 @@ public class ManagerController {
 
 	}
 
-	@RequestMapping("/manager/viewpage")
-	public String showViewPage(HttpServletRequest request) {
+	 
 
-		String page = request.getParameter("page");
-		String pid = request.getParameter("id");
-		if (page != null && pid != null && !page.trim().equals("")
-				&& !pid.trim().equals("")) {
-			Long id = new Long(pid);
-			if (page.equalsIgnoreCase("Warehouse Page")) {
-				WarehouseDTO warehouseDTO = warehouseService.loadWarehouse(id);
-				request.setAttribute("warehouse", warehouseDTO);
-				return "managerviewwarehouse.page";
-			}
-
-			if (page.equalsIgnoreCase("Machine Page")) {
-				/*
-				 * MachineDTO machineDTO=machineService.loadMachine(id);
-				 * request.setAttribute("machine", machineDTO);
-				 */
-				MachineDTO machineDTO = machineService.loadMachine(id);
-				Long wareHouseid = machineDTO.getWarehouseId();
-				System.out.println(wareHouseid);
-				WarehouseDTO warehouseDTO = (WarehouseDTO) warehouseService
-						.loadWarehouse(wareHouseid);
-				request.setAttribute("machine", machineDTO);
-				request.setAttribute("warehouse", warehouseDTO);
-				return "mainmanagerviewmachine.page";
-
-			}
-			if (page.equalsIgnoreCase("Lock Page")) {
-				/*
-				 * LockDTO lockDTO=lockService.loadLock(id);
-				 * request.setAttribute("lock",lockDTO);
-				 */
-				LockDTO lockDTO = lockService.loadLock(id);
-				Long wareHouseid = lockDTO.getWarehouseId();
-				System.out.println(wareHouseid);
-				WarehouseDTO warehouseDTO = (WarehouseDTO) warehouseService
-						.loadWarehouse(wareHouseid);
-				System.out.println(warehouseDTO);
-				request.setAttribute("warehouse", warehouseDTO);
-				request.setAttribute("lock", lockDTO);
-				return "mainmanagerviewlock.page";
-
-			}
-
-		}
-		return "redirect:controlpage.htm";
-
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/manager/createwarehouse")
-	public String createWarehouse(WarehouseForm warehouseForm,
-			ModelMap modelMap, HttpServletRequest request,
-			HttpServletResponse response) {
-		if (warehouseForm != null) {
-			WarehouseDTO warehouseDTO = new WarehouseDTO();
-			warehouseDTO.setAddress(warehouseForm.getAddress());
-			warehouseDTO.setCity(warehouseForm.getCity());
-			warehouseDTO.setCountry(warehouseForm.getCountry());
-			warehouseDTO.setStatus("Active");
-			warehouseDTO.setWarehouseSno(warehouseForm.getWarehouseSNO()
-					.toUpperCase());
-			warehouseDTO.setCreatedBy(1L);
-			warehouseService.saveWarehouse(warehouseDTO);
-
-		}
-
-		return "redirect:createwarehouse.htm?s=success";
-	}
-
-	@RequestMapping("/manager/controlpage")
-	public String showContollPage() {
-
-		return "managercontrolpage.page";
-
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/manager/checkpagestatus")
-	public @ResponseBody
-	String getCheckPageStatusInJSON(@RequestParam("id")
-	String id, @RequestParam("pageName")
-	String pageName) {
-		String result = null;
-		if (pageName != null) {
-			ObjectMapper mapper = new ObjectMapper();
-			if (pageName.trim().equalsIgnoreCase("Warehouse Page")) {
-				Map<String, Object> warehouse = warehouseService
-						.loadWareHouse(id);
-				if (warehouse != null) {
-					try {
-						result = mapper.writeValueAsString(warehouse);
-					} catch (JsonGenerationException e) {
-
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-
-						e.printStackTrace();
-					} catch (IOException e) {
-
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} else {
-					result = "fail";
-				}
-			}
-
-			if (pageName.trim().equalsIgnoreCase("Machine Page")) {
-				Map<String, Object> machine = machineService.loadMachine(id);
-				if (machine != null) {
-					try {
-						Long warehouseId = (Long) machine.get("warehouseId");
-						if (warehouseId != null) {
-							machine.putAll(warehouseService
-									.loadWareHouse(warehouseId));
-						}
-						result = mapper.writeValueAsString(machine);
-					} catch (JsonGenerationException e) {
-
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-
-						e.printStackTrace();
-					} catch (IOException e) {
-
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} else {
-					result = "fail";
-				}
-			}
-			if (pageName.trim().equalsIgnoreCase("Lock Page")) {
-				Map<String, Object> lock = lockService.loadLock(id);
-				if (lock != null) {
-					try {
-						Long warehouseId = (Long) lock.get("warehouseId");
-						if (warehouseId != null) {
-							lock.putAll(warehouseService
-									.loadWareHouse(warehouseId));
-						}
-						result = mapper.writeValueAsString(lock);
-					} catch (JsonGenerationException e) {
-
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-
-						e.printStackTrace();
-					} catch (IOException e) {
-
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} else {
-					result = "fail";
-				}
-			}
-		}
-
-		return result;
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/manager/updatepagestatus")
-	public String updtaePageStatus(HttpServletRequest request,
-			HttpServletResponse response) {
-		String pageName = request.getParameter("page");
-		if (pageName != null) {
-
-			if (pageName.trim().equalsIgnoreCase("Warehouse Page")) {
-				warehouseService.modifyWarehouseStatus(new Long(request
-						.getParameter("id")), request
-						.getParameter("pageStatus"));
-			}
-		}
-
-		return "redirect:controlpage.htm?p=" + pageName + "&s="
-				+ request.getParameter("pageStatus");
-	}
-
+	 
+	  
 	@RequestMapping("/manager/companybalance")
 	public String showCompanyBalance() {
 
@@ -619,42 +407,7 @@ public class ManagerController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/manager/checkwarehouseplaceinfo")
-	public @ResponseBody
-	String getCheckWarehousePlaceInfoInJSON(@RequestParam("city")
-	String city, @RequestParam("country")
-	String country) {
-
-		Long warehouseCount = 0L;
-		Long lockCount = 0L;
-		Long machineCount = 0L;
-		Long totalCost = 0L;
-		Long agencyWarehouseCount = 0L;
-		warehouseCount = warehouseService.loadWarehouseCount(country, city);
-		if ((country == null || country.trim().equals("") || country.trim()
-				.equalsIgnoreCase("ALL"))
-				&& (city == null || city.trim().equals("") || city.trim()
-						.equalsIgnoreCase("ALL"))) {
-			machineCount = machineService.loadMachineCount();
-			lockCount = lockService.loadLockCount();
-		} else {
-			List<Long> warehouseIdsList = warehouseService.loadWarehouseIdList(
-					country, city);
-			if (warehouseIdsList != null && warehouseIdsList.size() > 0) {
-				machineCount = machineService
-						.loadMachineCount(warehouseIdsList);
-				lockCount = lockService.loadLockCount(warehouseIdsList);
-
-			}
-		}
-
-		return "{\"warehouseCount\":\"" + warehouseCount
-				+ "\",\"lockCount\":\"" + lockCount + "\",\"machineCount\":\""
-				+ machineCount + "\",\"totalCost\":\"" + totalCost
-				+ "\",\"agencyWarehouseCount\":\"" + agencyWarehouseCount
-				+ "\"}";
-	}
-
+	 
 	@RequestMapping("/manager/warehouseagencyinfo")
 	public String showWarehouseAgencyInfo() {
 
@@ -687,55 +440,7 @@ public class ManagerController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/manager/checkmachineplaceinfo")
-	public @ResponseBody
-	String getCheckMachinePlaceInfoInJSON(@RequestParam("city")
-	String city, @RequestParam("country")
-	String country, @RequestParam("machineModel")
-	String machineModel) {
-
-		Long machineCount = 0L;
-		Long totalCost = 0L;
-		Long agencyMachineCount = 0L;
-
-		if ((country == null || country.trim().equals("") || country.trim()
-				.equalsIgnoreCase("ALL"))
-				&& (city == null || city.trim().equals("") || city.trim()
-						.equalsIgnoreCase("ALL"))
-				&& (machineModel == null || machineModel.trim().equals("") || machineModel
-						.equalsIgnoreCase("All"))) {
-			machineCount = machineService.loadMachineCount();
-
-		} else if ((country == null || country.trim().equals("") || country
-				.trim().equalsIgnoreCase("ALL"))
-				&& (city == null || city.trim().equals("") || city.trim()
-						.equalsIgnoreCase("ALL"))
-				&& (machineModel != null && !machineModel.trim()
-						.equalsIgnoreCase("ALL"))) {
-			machineCount = machineService.loadMachineCount(machineModel);
-
-		}
-
-		else {
-			List<Long> warehouseIdsList = warehouseService.loadWarehouseIdList(
-					country, city);
-			if (warehouseIdsList != null && warehouseIdsList.size() > 0) {
-				if (machineModel != null && !machineModel.trim().equals("")
-						&& !machineModel.equalsIgnoreCase("All")) {
-					machineCount = machineService.loadMachineCount(
-							warehouseIdsList, machineModel);
-				} else {
-					machineCount = machineService
-							.loadMachineCount(warehouseIdsList);
-				}
-
-			}
-		}
-
-		return "{\"machineCount\":\"" + machineCount + "\",\"totalCost\":\""
-				+ totalCost + "\",\"agencyMachineCount\":\""
-				+ agencyMachineCount + "\"}";
-	}
+	 
 
 	@RequestMapping("/manager/locksplaceinfo")
 	public String showLocksPlaceInfo() {
@@ -744,55 +449,7 @@ public class ManagerController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/manager/checklockplaceinfo")
-	public @ResponseBody
-	String getCheckLockPlaceInfoInJSON(@RequestParam("city")
-	String city, @RequestParam("country")
-	String country, @RequestParam("lockModel")
-	String lockModel) {
-
-		Long lockCount = 0L;
-		Long totalCost = 0L;
-		Long agencyLockCount = 0L;
-
-		if ((country == null || country.trim().equals("") || country.trim()
-				.equalsIgnoreCase("ALL"))
-				&& (city == null || city.trim().equals("") || city.trim()
-						.equalsIgnoreCase("ALL"))
-				&& (lockModel == null || lockModel.trim().equals("") || lockModel
-						.equalsIgnoreCase("All"))) {
-			lockCount = lockService.loadLockCount();
-
-		} else if ((country == null || country.trim().equals("") || country
-				.trim().equalsIgnoreCase("ALL"))
-				&& (city == null || city.trim().equals("") || city.trim()
-						.equalsIgnoreCase("ALL"))
-				&& (lockModel != null && !lockModel.trim().equalsIgnoreCase(
-						"ALL"))) {
-			lockCount = lockService.loadLockCount(lockModel);
-
-		}
-
-		else {
-			List<Long> warehouseIdsList = warehouseService.loadWarehouseIdList(
-					country, city);
-			if (warehouseIdsList != null && warehouseIdsList.size() > 0) {
-				if (lockModel != null && !lockModel.trim().equals("")
-						&& !lockModel.equalsIgnoreCase("All")) {
-					lockCount = lockService.loadLockCount(warehouseIdsList,
-							lockModel);
-				} else {
-					lockCount = lockService.loadLockCount(warehouseIdsList);
-				}
-
-			}
-		}
-
-		return "{\"lockCount\":\"" + lockCount + "\",\"totalCost\":\""
-				+ totalCost + "\",\"agencyLockCount\":\"" + agencyLockCount
-				+ "\"}";
-	}
-
+ 
 	@RequestMapping("/manager/machinesagencyinfo")
 	public String showMachineAgencyInfo() {
 

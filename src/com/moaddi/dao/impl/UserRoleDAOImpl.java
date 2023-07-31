@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.moaddi.dao.UserRoleDAO;
 import com.moaddi.dao.model.CustomerTL;
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
+
 import com.moaddi.dao.model.UserRolesTL;
 import com.moaddi.dao.utility.CustomHibernateDaoSupport;
 import com.moaddi.service.dto.UserRoleDTO;
@@ -374,12 +374,6 @@ public class UserRoleDAOImpl extends CustomHibernateDaoSupport implements
 		return userRole;
 	}
 
-	@Override
-	public Long inserOperatorRequestPartnerDetails(
-			OperatorPartnerRequestTL orderTL) {
-		System.out.println("In Operator DAOIMPL");
-		return (Long) getHibernateTemplate().save(orderTL);
 	
-	}
 
 }

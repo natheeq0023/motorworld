@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 
 import com.moaddi.dao.CustomerDAO;
 import com.moaddi.dao.UserRoleDAO;
-import com.moaddi.dao.model.BranchTL;
+
 import com.moaddi.dao.model.CustomerTL;
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
+
 import com.moaddi.dao.model.UserRolesTL;
 import com.moaddi.service.UserRoleService;
-import com.moaddi.service.dto.BranchDTO;
+
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.service.dto.OperatorPartnerDetailsDTO;
+
 import com.moaddi.service.dto.UserRoleDTO;
 //import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 
@@ -193,38 +193,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 		return userRoleDAO.getUser(userId, createdBy, userRole);
 	}
 
-	@Override
-	public Long saveOperatorDetails(
-			OperatorPartnerDetailsDTO operatorPartnerDetailsDTO) {
-		Long partnerId=null;
-		if(operatorPartnerDetailsDTO!=null)
-		{
-			OperatorPartnerRequestTL orderTL=new OperatorPartnerRequestTL();
-			
-			orderTL.setModel(operatorPartnerDetailsDTO.getModel());
-			orderTL.setContractId(operatorPartnerDetailsDTO.getContractId());
-			orderTL.setFullName(operatorPartnerDetailsDTO.getFullName());
-			orderTL.setCreatedBy(operatorPartnerDetailsDTO.getCreatedBy());
-			orderTL.setCreatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			orderTL.setEnddate(operatorPartnerDetailsDTO.getEnddate());
-			orderTL.setMonth(operatorPartnerDetailsDTO.getMonth());
-			orderTL.setStartDate(operatorPartnerDetailsDTO.getStartDate());
-			orderTL.setStatus(operatorPartnerDetailsDTO.getStatus());
-			orderTL.setUserRoleId(operatorPartnerDetailsDTO.getUserRoleId());
-			orderTL.setUserId(operatorPartnerDetailsDTO.getUserId());
-			orderTL.setPercentage(operatorPartnerDetailsDTO.getPercentage());
-			orderTL.setCustomerId(operatorPartnerDetailsDTO.getCustomerId());
-			orderTL.setAmountmonth(operatorPartnerDetailsDTO.getAmountmonth());
-			orderTL.setAmountnow(operatorPartnerDetailsDTO.getAmountnow());
-			orderTL.setPercentagemonth(operatorPartnerDetailsDTO.getPercentagemonth());
-			partnerId=userRoleDAO.inserOperatorRequestPartnerDetails(orderTL);
-			
-		}
-		return partnerId;
-	// TODO Auto-generated method stub
-		
-	}
-
+	
 	
 	
 }

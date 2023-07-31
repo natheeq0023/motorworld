@@ -9,23 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moaddi.dao.CustomerDAO;
-import com.moaddi.dao.model.AccountsPercentageTL;
-import com.moaddi.dao.model.AgencyRequestTL;
-import com.moaddi.dao.model.AgencyRequestTLs;
+
 import com.moaddi.dao.model.CustomerTL;
-import com.moaddi.dao.model.OperatorPartnerRequestTL;
-import com.moaddi.dao.model.OperatorRequestTL;
-import com.moaddi.dao.model.OrderTL;
+
 import com.moaddi.dao.model.VehicleRtoServiceTL;
 import com.moaddi.dao.model.VehicleServiceTL;
 import com.moaddi.service.CustomerService;
-import com.moaddi.service.dto.AccountsPercentageDTO;
-import com.moaddi.service.dto.AgencyRequestDTO;
-import com.moaddi.service.dto.AgencyRequestDTOs;
+
 import com.moaddi.service.dto.CustomerDTO;
-import com.moaddi.service.dto.OperatorPartnerDetailsDTO;
-import com.moaddi.service.dto.OperatorRequestDTO;
-import com.moaddi.service.dto.OrderDTO;
+
 import com.moaddi.service.dto.VehicleServiceDTO;
 import com.moaddi.ui.forms.OperatorPartnerRequestForm;
 
@@ -146,112 +138,16 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerDAO.getUser(customerId);
 	}
 	
-	public Integer saveAgencyRequest(AgencyRequestDTOs agencyRequestDTO) {
-		// TODO Auto-generated method stub
-		Integer requestId=0;
-		if(agencyRequestDTO!=null)
-		{
-			AgencyRequestTLs agencyRequestTL=new AgencyRequestTLs();
-			agencyRequestTL.setDescription(agencyRequestDTO.getDescription());
-			agencyRequestTL.setCreatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			agencyRequestTL.setStatus(agencyRequestDTO.getStatus());
-			agencyRequestTL.setCustomerId(agencyRequestDTO.getCustomerId());
-			requestId=customerDAO.insertAgencyRequest(agencyRequestTL);
-		}
-		return requestId;
-	}
+	
 	
 	public List<Map<String, Object>> loadAgency(String status) {
 		// TODO Auto-generated method stub
 		return customerDAO.getAgency(status);
 	}
 	
-	public AgencyRequestDTOs loadAgencyRequest(Integer agencyRequestId) {
-		// TODO Auto-generated method stub
-		AgencyRequestDTOs agencyRequestDTO=null;
-		AgencyRequestTLs agencyRequestTL=(AgencyRequestTLs)customerDAO.getAgencyRequest(agencyRequestId);
-		if(agencyRequestTL!=null)
-		{
-			agencyRequestDTO=new AgencyRequestDTOs();
-			agencyRequestDTO.setCreatedOn(agencyRequestTL.getCreatedOn());
-			agencyRequestDTO.setStatus(agencyRequestTL.getStatus());
-			agencyRequestDTO.setCustomerId(agencyRequestTL.getCustomerId());
-			agencyRequestDTO.setAgencyRequestId(agencyRequestTL.getAgencyRequestId());
-			agencyRequestDTO.setDescription(agencyRequestTL.getDescription());
-			
-			agencyRequestDTO.setUpdatedOn(agencyRequestTL.getUpdatedOn());
-			agencyRequestDTO.setCustomerId(agencyRequestTL.getCustomerId());
-			agencyRequestDTO.setComment(agencyRequestTL.getComment());
-			agencyRequestDTO.setApprovedBy(agencyRequestTL.getApprovedBy());
-			
-		}
-		return agencyRequestDTO;
-	}
+
 	
-	public void modifyAgencyRequest(AgencyRequestDTOs agencyRequestDTO) {
-		// TODO Auto-generated method stub
-		if(agencyRequestDTO!=null)
-		{
-			AgencyRequestTLs agencyRequestTL=new AgencyRequestTLs();
-			
-			agencyRequestTL.setUpdatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			agencyRequestTL.setStatus(agencyRequestDTO.getStatus());
-			agencyRequestTL.setCustomerId(agencyRequestDTO.getCustomerId());
-			agencyRequestTL.setComment(agencyRequestDTO.getComment());
-			agencyRequestTL.setApprovedBy(agencyRequestDTO.getApprovedBy());
-			agencyRequestTL.setAgencyRequestId(agencyRequestDTO.getAgencyRequestId());
-			customerDAO.updateAgencyRequest(agencyRequestTL);
-			
-			
-		}
-	}
 	
-	public Long saveAccountsPercentage(
-			AccountsPercentageDTO accountsPercentageDTO) {
-		// TODO Auto-generated method stub
-		Long id=0L;
-		if(accountsPercentageDTO!=null)
-		{
-			AccountsPercentageTL accountsPercentageTL=new AccountsPercentageTL();
-			accountsPercentageTL.setAccountKind(accountsPercentageDTO.getAccountKind());
-			accountsPercentageTL.setAccountPercentage(accountsPercentageDTO.getAccountPercentage());
-			accountsPercentageTL.setCity(accountsPercentageDTO.getCity());
-			accountsPercentageTL.setCountry(accountsPercentageDTO.getCountry());
-			accountsPercentageTL.setCreatedBy(accountsPercentageDTO.getCreatedBy());
-			accountsPercentageTL.setCreatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			accountsPercentageTL.setUserId(accountsPercentageDTO.getUserId());
-			
-			customerDAO.insertAccountsPercentage(accountsPercentageTL);
-		}
-		
-		return id;
-	}
-	
-	public Long saveAgencyRequests(AgencyRequestDTO agencyRequestDTO) {
-		// TODO Auto-generated method stub
-		Long requestId=0L;
-		if(agencyRequestDTO!=null)
-		{
-			AgencyRequestTL agencyRequestTL=new AgencyRequestTL();
-			agencyRequestTL.setCountry(agencyRequestDTO.getCountry());
-			agencyRequestTL.setOrganizationName(agencyRequestDTO.getOrganizationName());
-			agencyRequestTL.setDoc(agencyRequestDTO.getDoc());
-			agencyRequestTL.setYearEstablished(new java.sql.Date(agencyRequestDTO.getYearEstablished().getTime()));
-			agencyRequestTL.setOrganizationType(agencyRequestDTO.getOrganizationType());
-			agencyRequestTL.setRequesterName(agencyRequestDTO.getRequesterName());
-			agencyRequestTL.setStreet(agencyRequestDTO.getStreet());
-			agencyRequestTL.setCity(agencyRequestDTO.getCity());
-			agencyRequestTL.setEmail(agencyRequestDTO.getEmail());
-			agencyRequestTL.setMobileNo(agencyRequestDTO.getMobileNo());
-			agencyRequestTL.setCheckValue(agencyRequestDTO.getCheckValue());
-			agencyRequestTL.setCreatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			agencyRequestTL.setStatus(agencyRequestDTO.getStatus());
-			agencyRequestTL.setCustomerId(agencyRequestDTO.getCustomerId());
-			System.out.println(agencyRequestDTO.getCustomerId()+"In Controller");
-			requestId=customerDAO.insertAgencyRequests(agencyRequestTL);
-		}
-		return requestId;
-	}
 	
 	
 	public Long saveVehicleService(VehicleServiceDTO vehicleServiceDTO) {
@@ -316,6 +212,10 @@ public class CustomerServiceImpl implements CustomerService{
 				vehicleServiceDTO.setVehicleName(vehicleRtoServiceTL.getVehicleName());
 				vehicleServiceDTO.setVtyqe(vehicleRtoServiceTL.getVtype());
 				vehicleServiceDTO.setVbrand(vehicleRtoServiceTL.getVbrand());
+				vehicleServiceDTO.setComment(vehicleRtoServiceTL.getComment());
+				vehicleServiceDTO.setIssues(vehicleRtoServiceTL.getIssues());
+				vehicleServiceDTO.setUpdatedOn(vehicleRtoServiceTL.getUpdatedOn());
+				vehicleServiceDTO.setVehicleYear(vehicleRtoServiceTL.getVehicleYear());
 				orders.add(vehicleServiceDTO);
 				
 			}
@@ -332,54 +232,8 @@ public Integer modifyUserPassord(Long customerId, String password) {
 	}
 	
 	
-	public AgencyRequestDTO loadAgencyRequests(Long agencyRequestId) {
-		// TODO Auto-generated method stub
-		AgencyRequestDTO agencyRequestDTO=null;
-		System.out.println(customerDAO.getAgencyRequests(agencyRequestId)+"in service requestId");
-		AgencyRequestTL agencyRequestTL=(AgencyRequestTL)customerDAO.getAgencyRequests(agencyRequestId);
-		if(agencyRequestTL!=null)
-		{
-			agencyRequestDTO=new AgencyRequestDTO();
-			agencyRequestDTO.setStatus(agencyRequestTL.getStatus());
-			agencyRequestDTO.setAgencyRequestId(agencyRequestTL.getAgencyRequestId());
-			agencyRequestDTO.setCountry(agencyRequestTL.getCountry());
-			agencyRequestDTO.setOrganizationName(agencyRequestTL.getOrganizationName());
-			agencyRequestDTO.setDoc(agencyRequestTL.getDoc());
-			agencyRequestDTO.setYearEstablished(new java.sql.Date(agencyRequestTL.getYearEstablished().getTime()));
-			agencyRequestDTO.setOrganizationType(agencyRequestTL.getOrganizationType());
-			agencyRequestDTO.setRequesterName(agencyRequestTL.getRequesterName());
-			agencyRequestDTO.setStreet(agencyRequestTL.getStreet());
-			agencyRequestDTO.setCity(agencyRequestTL.getCity());
-			agencyRequestDTO.setEmail(agencyRequestTL.getEmail());
-			agencyRequestDTO.setMobileNo(agencyRequestTL.getMobileNo());
-			agencyRequestDTO.setCheckValue(agencyRequestTL.getCheckValue());
-			agencyRequestDTO.setUpdatedOn(agencyRequestTL.getUpdatedOn());
-			agencyRequestDTO.setCustomerId(agencyRequestTL.getCustomerId());
-			agencyRequestDTO.setComment(agencyRequestTL.getComment());
-			agencyRequestDTO.setApprovedBy(agencyRequestTL.getApprovedBy());
-			
-		}
-		return agencyRequestDTO;
-	}
 	
-	public void modifyAgencyRequests(AgencyRequestDTO agencyRequestDTO) {
-		// TODO Auto-generated method stub
-		if(agencyRequestDTO!=null)
-		{
-			AgencyRequestTL agencyRequestTL=new AgencyRequestTL();
-			
-			agencyRequestTL.setUpdatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			agencyRequestTL.setStatus(agencyRequestDTO.getStatus());
-			agencyRequestTL.setCustomerId(agencyRequestDTO.getCustomerId());
-			agencyRequestTL.setComment(agencyRequestDTO.getComment());
-			agencyRequestTL.setApprovedBy(agencyRequestDTO.getApprovedBy());
-			agencyRequestTL.setAgencyRequestId(agencyRequestDTO.getAgencyRequestId());
-			
-			customerDAO.updateAgencyRequests(agencyRequestTL);
-			
-			
-		}
-	}
+	
 	public Integer modifyUserNumber(Long customerId, String mobileNo) {
 		// TODO Auto-generated method stub
 		return customerDAO.updateUserNumber(customerId, mobileNo);
@@ -389,85 +243,14 @@ public Integer modifyUserPassord(Long customerId, String password) {
 		return customerDAO.getCustomerUserRole(userRoleId);
 	}
 	
-	public Long saveOperatorRequests(OperatorRequestDTO operatorRequestDTO) {
-		// TODO Auto-generated method stub
-		Long requestId=0L;
-		if(operatorRequestDTO!=null)
-		{
-			OperatorRequestTL operatorRequestTL=new OperatorRequestTL();
-			operatorRequestTL.setCountry(operatorRequestDTO.getCountry());
-			operatorRequestTL.setOrganizationName(operatorRequestDTO.getOrganizationName());
-			operatorRequestTL.setDoc(operatorRequestDTO.getDoc());
-			operatorRequestTL.setYearEstablished(new java.sql.Date(operatorRequestDTO.getYearEstablished().getTime()));
-			operatorRequestTL.setOrganizationType(operatorRequestDTO.getOrganizationType());
-			operatorRequestTL.setRequesterName(operatorRequestDTO.getRequesterName());
-			operatorRequestTL.setStreet(operatorRequestDTO.getStreet());
-			operatorRequestTL.setSalesManId(operatorRequestDTO.getSalesManId());
-			operatorRequestTL.setCity(operatorRequestDTO.getCity());
-			operatorRequestTL.setEmail(operatorRequestDTO.getEmail());
-			operatorRequestTL.setMobileNo(operatorRequestDTO.getMobileNo());
-			operatorRequestTL.setCheckValue(operatorRequestDTO.getCheckValue());
-			operatorRequestTL.setCreatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			operatorRequestTL.setStatus(operatorRequestDTO.getStatus());
-			operatorRequestTL.setCustomerId(operatorRequestDTO.getCustomerId());
-			operatorRequestTL.setCreatedBy(operatorRequestDTO.getCreatedBy());
-			requestId=customerDAO.insertOperatorRequests(operatorRequestTL);
-		}
-		return requestId;
-	}
+	
 	
 	public List<Map<String, Object>> loadOperatorRequest(String status,Long agencyId) {
 		// TODO Auto-generated method stub
 		return customerDAO.getOperatorRequest(status,agencyId);
 	}
 	
-	public OperatorRequestDTO loadoperatorRequests(Long requestId) {
-		OperatorRequestDTO operatorRequestDTO=null;
-		OperatorRequestTL operatorRequestTL=(OperatorRequestTL)customerDAO.getOperatorRequest(requestId);
-		if(operatorRequestTL!=null)
-		{
-			operatorRequestDTO=new OperatorRequestDTO();
-			operatorRequestDTO.setCreatedOn(operatorRequestTL.getCreatedOn());
-			operatorRequestDTO.setStatus(operatorRequestTL.getStatus());
-			operatorRequestDTO.setCustomerId(operatorRequestTL.getCustomerId());
-			operatorRequestDTO.setOperatorRequestId(operatorRequestTL.getOperatorRequestId());
-			operatorRequestDTO.setComment(operatorRequestTL.getComment());
-			operatorRequestDTO.setCountry(operatorRequestTL.getCountry());
-			operatorRequestDTO.setRequesterName(operatorRequestTL.getRequesterName());
-			operatorRequestDTO.setOrganizationName(operatorRequestTL.getOrganizationName());
-			operatorRequestDTO.setOrganizationType(operatorRequestTL.getOrganizationType());
-			operatorRequestDTO.setCity(operatorRequestTL.getCity());
-			operatorRequestDTO.setStreet(operatorRequestTL.getStreet());
-			operatorRequestDTO.setYearEstablished(new java.sql.Date(operatorRequestTL.getYearEstablished().getTime()));
-			operatorRequestDTO.setEmail(operatorRequestTL.getEmail());
-			operatorRequestDTO.setMobileNo(operatorRequestTL.getMobileNo());
-			operatorRequestDTO.setUpdatedOn(operatorRequestTL.getUpdatedOn());
-			operatorRequestDTO.setCustomerId(operatorRequestTL.getCustomerId());
-			operatorRequestDTO.setComment(operatorRequestTL.getComment());
-			operatorRequestDTO.setApprovedBy(operatorRequestTL.getApprovedBy());
-			operatorRequestDTO.setCreatedBy(operatorRequestTL.getCreatedBy());
-			
-		}
-		return operatorRequestDTO;
-	}
 	
-	public void modifyOperatorRequests(OperatorRequestDTO operatorRequestDTO) {
-		if(operatorRequestDTO!=null)
-		{
-			OperatorRequestTL operatorRequestTL=new OperatorRequestTL();
-			
-			operatorRequestTL.setUpdatedOn(new java.sql.Date(new java.util.Date().getTime()));
-			operatorRequestTL.setStatus(operatorRequestDTO.getStatus());
-			operatorRequestTL.setCustomerId(operatorRequestDTO.getCustomerId());
-			operatorRequestTL.setComment(operatorRequestDTO.getComment());
-			operatorRequestTL.setApprovedBy(operatorRequestDTO.getApprovedBy());
-			operatorRequestTL.setOperatorRequestId(operatorRequestDTO.getOperatorRequestId());
-			
-			customerDAO.updateOperatorRequests(operatorRequestTL);
-			
-			
-		}
-	}
 	public boolean isCustomerExists(String userId) {
 		
 		return customerDAO.isCustomerExists(userId);
@@ -479,33 +262,8 @@ public Integer modifyUserPassord(Long customerId, String password) {
 		// TODO Auto-generated method stub
 		return customerDAO.getOperatorPartner(status);
 	}
-	@Override
-	public OperatorPartnerDetailsDTO loadOperatorpartnerRequests(Long operatorPartnerId) {
-		OperatorPartnerDetailsDTO operatorPartnerDetailsDTO=null;
-		OperatorPartnerRequestTL operatorPartnerForm=(OperatorPartnerRequestTL)customerDAO.getoperatorPartnerRequests(operatorPartnerId);
-		if(operatorPartnerForm!=null)
-		{
-			operatorPartnerDetailsDTO=new OperatorPartnerDetailsDTO();
-			operatorPartnerDetailsDTO.setStatus(operatorPartnerForm.getStatus());
-			operatorPartnerDetailsDTO.setContractId(operatorPartnerForm.getContractId());
-			operatorPartnerDetailsDTO.setOperatorPartnerId(operatorPartnerForm.getOperatorPartnerId());
-			operatorPartnerDetailsDTO.setCreatedBy(operatorPartnerForm.getCreatedBy());
-			operatorPartnerDetailsDTO.setCreatedOn(operatorPartnerForm.getCreatedOn());
-			Long customer = operatorPartnerForm.getCustomerId();
-			long cust = new Long(customer);
-			operatorPartnerDetailsDTO.setCustomerId(cust);
-			operatorPartnerDetailsDTO.setUserRoleId(operatorPartnerForm.getUserRoleId());
-			operatorPartnerDetailsDTO.setEnddate(operatorPartnerForm.getEnddate());
-			operatorPartnerDetailsDTO.setStartDate(operatorPartnerForm.getStartDate());
-			operatorPartnerDetailsDTO.setUserId(operatorPartnerForm.getUserId());
-			operatorPartnerDetailsDTO.setPercentage(operatorPartnerForm.getPercentage());
-			
-			
-			
-			
-		}
-		return operatorPartnerDetailsDTO;
-	}
+
+
 	@Override
 	public Integer modifyoperatorpartnerRequests(Long userRoleId,String status) {
 		/*if(operatorPartnerDetailsDTO!=null)
@@ -676,6 +434,9 @@ public Integer modifyUserPassord(Long customerId, String password) {
 				orderDTO.setUpdatedOn(orderTL.getUpdatedOn());
 				orderDTO.setComment(orderTL.getComment());
 				orderDTO.setIssues(orderTL.getIssues());
+				orderDTO.setVehicleName(orderTL.getVehicleName());
+				orderDTO.setVehicleYear(orderTL.getVehicleYear());
+				
 			
 				
 				orders.add(orderDTO);
@@ -714,7 +475,9 @@ public Integer modifyUserPassord(Long customerId, String password) {
 				orderDTO.setUpdatedOn(orderTL.getUpdatedOn());
 				orderDTO.setComment(orderTL.getComment());
 				orderDTO.setRtoservicetype(orderTL.getRtoservicetype());
-			
+				orderDTO.setIssues(orderTL.getIssues());
+				orderDTO.setVehicleName(orderTL.getVehicleName());
+				orderDTO.setVehicleYear(orderTL.getVehicleYear());
 				
 				orders.add(orderDTO);
 				
